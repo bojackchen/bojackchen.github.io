@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta name="google-site-verification" content="3cQ6JQRcEpaIMnfTD54kpHHV7BepnB73aiEJj4AsfiQ">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;bojackchen.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="人民网 2019 年 6 月 12 日报，上海 7 月 1 日起步入垃圾分类强制时代，居民任性倒垃圾最高可罚 200 元。单位混装混运，最高可罚 5 万元。另外，上海市旅游住宿业不再主动提供客房一次性日用品（六小样：牙刷、梳子、浴擦、剃须刀、指甲锉、鞋擦）。 先说结论：这是一件早就该做，必须要做，并且一定会持续做下去的事情。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="垃圾围城，全球变暖和躲不开的热力学第二定律">
+<meta property="og:url" content="https://bojackchen.github.io/2019/07/%E5%9E%83%E5%9C%BE%E5%9B%B4%E5%9F%8E%EF%BC%8C%E5%85%A8%E7%90%83%E5%8F%98%E6%9A%96%E5%92%8C%E8%BA%B2%E4%B8%8D%E5%BC%80%E7%9A%84%E7%83%AD%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E5%AE%9A%E5%BE%8B/index.html">
+<meta property="og:site_name" content="陈小峰">
+<meta property="og:description" content="人民网 2019 年 6 月 12 日报，上海 7 月 1 日起步入垃圾分类强制时代，居民任性倒垃圾最高可罚 200 元。单位混装混运，最高可罚 5 万元。另外，上海市旅游住宿业不再主动提供客房一次性日用品（六小样：牙刷、梳子、浴擦、剃须刀、指甲锉、鞋擦）。 先说结论：这是一件早就该做，必须要做，并且一定会持续做下去的事情。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/thermodynamics.png">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/EER.png">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/sunearth.png">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/2015energy.png">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/korean.png">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/5years.png">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/beijingmap.jpg">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/beijinglist.jpg">
+<meta property="article:published_time" content="2019-07-19T15:09:51.000Z">
+<meta property="article:modified_time" content="2021-05-25T07:35:11.085Z">
+<meta property="article:author" content="陈小峰">
+<meta property="article:tag" content="随笔">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bojackchen.github.io/uploads/2019/thermodynamics.png">
+
+
+<link rel="canonical" href="https://bojackchen.github.io/2019/07/%E5%9E%83%E5%9C%BE%E5%9B%B4%E5%9F%8E%EF%BC%8C%E5%85%A8%E7%90%83%E5%8F%98%E6%9A%96%E5%92%8C%E8%BA%B2%E4%B8%8D%E5%BC%80%E7%9A%84%E7%83%AD%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E5%AE%9A%E5%BE%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;bojackchen.github.io&#x2F;2019&#x2F;07&#x2F;%E5%9E%83%E5%9C%BE%E5%9B%B4%E5%9F%8E%EF%BC%8C%E5%85%A8%E7%90%83%E5%8F%98%E6%9A%96%E5%92%8C%E8%BA%B2%E4%B8%8D%E5%BC%80%E7%9A%84%E7%83%AD%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E5%AE%9A%E5%BE%8B&#x2F;&quot;,&quot;path&quot;:&quot;2019&#x2F;07&#x2F;垃圾围城，全球变暖和躲不开的热力学第二定律&#x2F;&quot;,&quot;title&quot;:&quot;垃圾围城，全球变暖和躲不开的热力学第二定律&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>垃圾围城，全球变暖和躲不开的热力学第二定律 | 陈小峰</title><script src="/js/config.js"></script>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107307402-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{&quot;tracking_id&quot;:&quot;UA-107307402-1&quot;,&quot;only_pageview&quot;:false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">陈小峰</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Bojack F. CHEN</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%89%A9%E7%90%86%E8%A7%84%E5%BE%8B%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">一、物理规律问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BA%B2%E4%B8%8D%E5%BC%80%E7%9A%84%E7%83%AD%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E5%AE%9A%E5%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">二、躲不开的热力学第二定律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%9E%83%E5%9C%BE%E5%9B%B4%E5%9F%8E"><span class="nav-number">3.</span> <span class="nav-text">三、垃圾围城</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%85%A8%E7%90%83%E5%8F%98%E6%9A%96"><span class="nav-number">4.</span> <span class="nav-text">四、全球变暖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%86%B5"><span class="nav-number">5.</span> <span class="nav-text">五、熵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E4%B8%8A%E6%B5%B7%E5%9E%83%E5%9C%BE%E5%88%86%E7%B1%BB%E4%B8%8E%E5%93%A5%E6%9C%AC%E5%93%88%E6%A0%B9%E4%BC%9A%E8%AE%AE"><span class="nav-number">6.</span> <span class="nav-text">六、上海垃圾分类与哥本哈根会议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="nav-number">7.</span> <span class="nav-text">七、未来展望</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%90%8E%E8%AE%B0"><span class="nav-number">8.</span> <span class="nav-text">八、后记</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="陈小峰"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">陈小峰</p>
+  <div class="site-description" itemprop="description">This is Bojack F. CHEN (陈 峰)'s personal website deployed on GitHub with Hexo and NexT theme.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:bojackchen@gmail.com" title="E-Mail → mailto:bojackchen@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://bojackchen.github.io/about/wechat" title="Wechat → https:&#x2F;&#x2F;bojackchen.github.io&#x2F;about&#x2F;wechat"><i class="fa fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://linkedin.com/in/bojackchen" title="LinkedIn → https:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;bojackchen" rel="noopener" target="_blank"><i class="fa fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://zhihu.com/people/bojackchen" title="Zhihu → https:&#x2F;&#x2F;zhihu.com&#x2F;people&#x2F;bojackchen" rel="noopener" target="_blank"><i class="fa fa-question-circle fa-fw"></i>Zhihu</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/bojackchen" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bojackchen.github.io/2019/07/%E5%9E%83%E5%9C%BE%E5%9B%B4%E5%9F%8E%EF%BC%8C%E5%85%A8%E7%90%83%E5%8F%98%E6%9A%96%E5%92%8C%E8%BA%B2%E4%B8%8D%E5%BC%80%E7%9A%84%E7%83%AD%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E5%AE%9A%E5%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="陈小峰">
+      <meta itemprop="description" content="This is Bojack F. CHEN (陈 峰)'s personal website deployed on GitHub with Hexo and NexT theme.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈小峰">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          垃圾围城，全球变暖和躲不开的热力学第二定律
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-07-19 23:09:51" itemprop="dateCreated datePublished" datetime="2019-07-19T23:09:51+08:00">2019-07-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-25 15:35:11" itemprop="dateModified" datetime="2021-05-25T15:35:11+08:00">2021-05-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>人民网 2019 年 6 月 12 日报，上海 7 月 1 日起步入垃圾分类强制时代，居民任性倒垃圾最高可罚 200 元。单位混装混运，最高可罚 5 万元。另外，上海市旅游住宿业不再主动提供客房一次性日用品（六小样：牙刷、梳子、浴擦、剃须刀、指甲锉、鞋擦）。</p>
+<p>先说结论：这是一件<strong>早就该做，必须要做，并且一定会持续做下去</strong>的事情。</p>
+<span id="more"></span>
+
+<h2 id="一、物理规律问题"><a href="#一、物理规律问题" class="headerlink" title="一、物理规律问题"></a>一、物理规律问题</h2><p>中学在学政治课程的时候，政治生活的书上是这么说的：</p>
+<ol>
+<li><p>当今世界的主题是和平与发展；</p>
+</li>
+<li><p>霸权主义和强权政治是维护和平与发展的主要障碍；</p>
+</li>
+<li><p>恐怖主义也是世界和平的重要问题。</p>
+</li>
+</ol>
+<p>年轻的陈小峰那个时候就以为，解决<strong>霸权主义和恐怖主义</strong>是人类发展的关键。的确，当今世界受到霸权主义和恐怖主义的荼毒，和平与发展在全球范围受到阻碍，在部分区域被完全颠覆。全人类的命运仰仗于这些问题的合理解决，直到今天陈小峰也是这样的想法。</p>
+<p>但是，后来随着知识水平的提高和认知思维的变化，陈小峰觉得解决霸权主义和恐怖主义依然很重要，但是已经不是最重要的了。刘慈欣在《三体》里面提到，<strong>『最高端的武器是物理规律武器』</strong>。同样的，最棘手的问题是物理规律问题。霸权主义和恐怖主义不是物理规律问题，是『人』导致的问题，最后也必将由『人』来解决。如果问题没有得到解决，那一定是有『人』不想解决，甚至有『人』在阻碍问题的解决。如果最后问题失控，『人』灭绝了，这些问题自然也随之消失了。</p>
+<p>但是物理规律问题不一样，它受物理规律支配，且不以『人』的意志为转移。不管人类愿不愿意，这个问题就在那里，它和宇宙同寿，不像霸权主义和恐怖主义那样是由『人』创造出来的；直到人类灭绝，霸权主义和恐怖主义消失，这个问题也依然会持续下去。最要命的是，这个问题从一开始就是不可解决又不可跨越的，若是胆敢违抗它，那就必须做好被迫每时每刻都要和它作斗争的准备，直到自身消亡，因为这个问题本身是绝对不会消亡的。</p>
+<p>那么当今世界有什么问题是『物理规律问题』呢？有，<strong>垃圾围城</strong>和<strong>全球变暖</strong>。霸权主义和恐怖主义这样的问题作用于小范围，而且会随着国际形势变化；而物理规律问题可不会跟你商量，它作用于全宇宙，当然也一定会降临到你头上。全球变暖中学政治课本就提到过，垃圾围城在课本角落里面用一句话带过，为什么陈小峰会觉得这两个问题是人类面临的最重要的问题呢？它们是物理规律问题吗？支配它们的物理规律是什么呢？</p>
+<h2 id="二、躲不开的热力学第二定律"><a href="#二、躲不开的热力学第二定律" class="headerlink" title="二、躲不开的热力学第二定律"></a>二、躲不开的热力学第二定律</h2><p><img src="/uploads/2019/thermodynamics.png" alt="热力学第二定律"></p>
+<p>热力学第二定律有很多种表述：</p>
+<p><strong>克劳修斯表述</strong>：热量不能自发地从低温物体转移到高温物体。</p>
+<p><strong>开尔文表述</strong>：不可能从单一热源取热使之完全转换为功而不产生其他影响。</p>
+<p><strong>熵增原理表述</strong>：在自然过程中，一个孤立系统的总混乱度（即『熵』）不会减小。</p>
+<p>中学的时候陈小峰刷物理题的时候遇到过一道很有意思的题目：一个完全隔热的房间里面有一台冰箱，冰箱插上电并且冰箱门是打开的，问足够长的时间之后，房间的温度会上升还是会下降？</p>
+<p>一样的，这题目有很多种解答方法：</p>
+<p><strong>解答一</strong>：根据克劳修斯的表述，冰箱能够把冰箱内部（低温物体）的热量转移到冰箱外部（高温物体），这一定不是自发的，即冰箱要用电，压缩机要做功，那么房间内部的温度会上升，因为冰箱内部的热量只是换了个位置，而压缩机所做的功最后会变成了热量耗散在房间里面，所以房间温度会升高。</p>
+<p><strong>解答二</strong>：宏观地看，这个房间与外界没有热交换，而且有净能量流入（冰箱的电能），不管这些能量用来做什么了，最后一定会耗散成热量留在房间里，所以房间温度会升高。</p>
+<p>自然情况下，水往低处流，或者热量从高温物体往低温物体传导，都是自发的（参见克劳修斯表述）。一个冰箱能把冰箱内部的热量转移到外部，为了让这一<strong>逆温度梯度的非自发热传导</strong>能够发生，冰箱自己要消耗能量，而且消耗的能量最终也是转化为热能。小伙伴们可以在旧一点的冰箱背后找到压缩机和散热板，用手去感受一下那里的温度。空调也是同样的原理，它能把房间内的热量搬到房间外，同时自己消耗能量，产生的热量和搬运的热量都是通过空调外机释放在房间外的。注意，房间内每少 1 焦耳的热量，房间外会多大于 1 焦耳的热量，因为这里面包含被转移出来的 1 焦耳和为了实现非自发热传导做功所消耗的能量。至于这个大于 1 焦耳到底是多少，参见空调能效比。</p>
+<p><img src="/uploads/2019/EER.png" alt="空调制冷能效 EER"></p>
+<p>空调的制冷能效 EER = 制冷量 / 制冷消耗功率。例如一个 EER = 3.6 的空调，<strong>那么房间内每少 1 焦耳的能量，房间外会多 1.278 焦耳的能量</strong>，是赔本生意。赔本生意为什么还有人做？因为房间里面确实舒服了，这种时候管他外面怎么样呢。</p>
+<h2 id="三、垃圾围城"><a href="#三、垃圾围城" class="headerlink" title="三、垃圾围城"></a>三、垃圾围城</h2><p>热力学第二定律是最接近哲学和宇宙真理的物理规律，所以能在很多现实世界问题中找到它的存在，比如垃圾围城问题。</p>
+<p>首先，垃圾作为一种极度混乱的系统，熵值很大（参见熵增原理表述）。<strong>『熵』</strong>是用来描述系统混乱程度的物理量，比如一个整理过的房间就比混乱的房间熵值要小，低温物体的熵值也要比高温物体小。所以垃圾到底是怎么来的呢？就像房间里不开空调的话，慢慢地就会和外面一样热，为了维护人类自身和社会的高度有序（任何生物都是高度有序的系统），我们必须像空调一样一刻不停地把内部增加的熵转移出去，过程中当然也会额外制造一些熵。我们要呼吸吃饭喝水睡觉维持身体的运作，会产生各种垃圾和废热；我们的社会要造楼铺桥修路挖坑，会产生建筑垃圾，等等等等。另外，不要忘了，增加的熵一定大于减小的熵，就像房间里面搬走 1 焦耳的热量之后，最后房间外面会多出来 1.278 焦耳的热量。只要生物没有灭绝，人类社会还要继续发展，就会有源源不断的垃圾产生出来，这些垃圾是<strong>人类新陈代谢</strong>和<strong>人类社会维持秩序</strong>所必须要产生的废物。</p>
+<p>垃圾，说白了就是人类这个高度有序的生物和人类社会这个高度有序的系统，为了对抗熵增理论（孤立系统的熵一定是增加的）所产生的必要的无序废物（两部分：内部转移出来的熵和做功额外产生的熵）。人类越多，人类社会越发展，产生的垃圾也一定越多，这是物理规律。所以说，垃圾围城是一个永久困扰人类的问题，人口越多，人类越是发展，垃圾围城问题就越是严重。</p>
+<p>但是过去人类几千年历史上怎么好像没有听说过垃圾多得成为一个问题的故事？因为垃圾围城这样的<strong>『特权』</strong>只有工业革命之后的人类才有。是的，你没有听错，<strong>垃圾围城是『特权』</strong>，不是任何历史时期的人类都可以遇到的。想象一下工业革命前的劳工要挖运河，力气哪里来的？呼吸吃饭喝水睡觉。饭哪里来的？猪牛羊菜水稻小麦。猪牛羊哪里来的？家家户户圈养的。怎么圈养家禽的？给它们吃草。草和水稻小麦哪里来的？地里长出来的。地里为什么能长吃的？太阳。</p>
+<p>同学们！！！我们得出了一个了不得的结论！！！工业革命以前，人类社会能发展到哪一步，不是人类所能左右的，是<strong>太阳</strong>说了算的！！！地球上所有的能量传递假设都是 100% 好了，每年太阳辐射到中国土地的能量假设是 4 万万万万亿焦耳，那么地里最多也只能长出这么多等值的粮食，人也只能吸收这么多等值的能量，自然也只能做这么多等值的功以维持自身和社会的有序，以致于<strong>人类社会最高只能发展到某一个特定程度</strong>，在那个程度下，刚刚好每年需要 4 万万万万亿焦耳的功来把内部增加的熵转移走以维持现状，从此不能再向前发展哪怕一丁点。举个例子，就像一个冰箱只能制冷到零下二十度，再往下就不行了，因为这个时候压缩机所做的功只能维持现状，除非换一个压缩机更给力的冰箱，当然也要用更多电。所以，工业革命以前，人类社会最高能发展到哪一步早就被太阳死死地钉住了。</p>
+<p><img src="/uploads/2019/sunearth.png" alt="太阳能垄断地球发展"></p>
+<h2 id="四、全球变暖"><a href="#四、全球变暖" class="headerlink" title="四、全球变暖"></a>四、全球变暖</h2><p>工业革命的伟大之处在于，人类学会了利用化石能源驱使机器，从而<strong>打破了太阳能的垄断</strong>。以前人类社会的发展受制于每年地球能接受多少太阳辐射的能量，现在我们学会了使用化石能源里面的太阳能存量（过去几十亿年存下来的太阳能）。从此，人类社会突飞猛进，因为可以用来做功的能量突然从太阳能扩展到了太阳能以及化石能源的化学能，能支持的人类社会的大小和有序程度大大提升，所以才有我们今天的世界人口和现代社会。</p>
+<p>有个问题，压缩机做的功最后也会变成热，导致冰箱外面增加的热量其实大于里面减少的热量。化石能源也是如此，燃烧之后用来做功，做功完成后全部转化为热量耗散在大气中。以 <strong>2015 年世界能源消耗量</strong>（已经全都换算为原油当量）为例，我们来做一个简单的计算。</p>
+<p><img src="/uploads/2019/2015energy.png" alt="2015 年世界能源消耗总量"></p>
+<p>原油的燃烧值是 42 MJ/kg，2015 年全世界消耗的原油当量是 11306.4 X 10^9 kg，因此产生的总热量是 4.75 X 10^20 J。假设所有的能量耗散在大气层中。大气的比热是 1005 J/(kg*K)（定压，300 K 测得），但是大气的总质量是多少呢？注意，大气压强就是大气的总重力作用在地球表面的结果，所以大气总重力 = 大气压 X 地球表面积 = 5.15 X 10^19 N。从工业革命到现在 160 年，假设每年燃烧化石燃料的量是线性递增的，<strong>那么这 160 年来的总热量足够让地球大气上升 7.342 ℃</strong>（肯定不准确，因为我们忽视了大气对宇宙空间的热辐射和海洋，只是个非常粗略的估计）。</p>
+<p>同学们！！！我们又得出了一个了不得的结论！！！近一百多年来的全球变暖，刨去地球本身的因素，很重要一个原因就是因为<strong>人类化石能源的燃烧</strong>！！！人类社会空前的有序程度需要大量的能量用来做功从而得以维持，这些能量主要来自于化石能源的燃烧，产生的热量耗散在空气中，自然就会导致全球变暖，更何况还有燃烧产生的温室气体的加成（此部分加成不知道怎么算，有小伙伴有想法可以私信我）。</p>
+<h2 id="五、熵"><a href="#五、熵" class="headerlink" title="五、熵"></a>五、熵</h2><p>总体而言，<strong>无序系统有两种表现形式</strong>，一种是物质的（垃圾），一种是能量的（热量）。这些无序物质和能量的数量直接和人口以及人类社会的有序程度成正比。因此，垃圾围城和全球变暖是物理规律问题，是人类的终极问题，其严重程度和解决它们所需要的努力，远大于所谓的霸权主义和恐怖主义。事实上，人类只要存在一天，就要和这些问题作无休止的斗争，直到自身消亡。</p>
+<p>事实上，地球从出现第一个单细胞生物以来，所有生物就在无休止地和热力学第二定律作斗争。斗争非常成功，人类这样的高智商的社会生物得以养成。为什么宇宙会突然孕育出如此逆天的生命，也就是<strong>在一个小范围内创造了一个稳定的低熵系统</strong>呢？薛定谔如是说：<strong>『生命是什么？生命是一个美丽的巧合，是宇宙在奔向熵最大的热寂过程中，给自己创造出来的观众。』</strong></p>
+<h2 id="六、上海垃圾分类与哥本哈根会议"><a href="#六、上海垃圾分类与哥本哈根会议" class="headerlink" title="六、上海垃圾分类与哥本哈根会议"></a>六、上海垃圾分类与哥本哈根会议</h2><p>现如今的地球，无序的物质（垃圾）大量侵占了生物赖以生存的陆地和海洋，无序的能量（热量）导致冰川融化、海平面升高和气候异常。Nature Research 报，联合国资助的一项里程碑式报告发现，农业是地球生态系统面临的最大威胁之一。根据迄今为止最全面的一份地球生态系统报告，多达一百万个动植物物种正因人类活动面临灭绝，其中很多将发生在几十年内。为了支持庞大又有序得空前绝后的人类社会的发展，大约 75% 的陆地和 66% 的海洋区域被大幅改变，大量的垃圾排放在无人区域。原有生物栖息地被侵占，剩余栖息地质量变差，地球气候异常，导致大量动物灭绝，情理之中。</p>
+<p>人类为了解决垃圾围城和全球变暖这两个物理规律问题有过值得敬佩的努力。</p>
+<p><strong>垃圾分类</strong>是人类解决垃圾围城这一永恒物理规律问题的一小小小小小小小小步。处理垃圾的主要手段是<strong>卫生填埋、高温堆肥和焚烧</strong>。填埋是最主要手段，堆肥仅限部分有机可降解垃圾，焚烧因为有污染，所以要么技术过关，要么不用，除非放弃治疗（参见最近中国停止进口洋垃圾之后露天焚烧了好久，建成垃圾焚烧厂后还要再烧 5 年烧完的韩国垃圾山）。</p>
+<p><img src="/uploads/2019/korean.png"><br><img src="/uploads/2019/5years.png" alt="燃烧中的韩国垃圾山"></p>
+<p>以北京为例，北京附近的垃圾处理厂分布如下：</p>
+<p><img src="/uploads/2019/beijingmap.jpg" alt="北京附近垃圾处理厂分布"><br><img src="/uploads/2019/beijinglist.jpg" alt="北京垃圾处理厂列表"></p>
+<p>我猜这种垃圾处理公司长期处于不怎么盈利又一直过载的情况，因为又不体面又没钱赚，资本是绝对不会支持的，但是北京人民产生的垃圾可是一年比一年多。所以 2019 年 7 月 1 日起，上海开始实行<strong>示范性强制垃圾分类</strong>，希望从源头帮助垃圾处理产业先做一点事，帮助之后的垃圾回收、填埋、堆肥和焚烧，减轻大城市垃圾处理的压力。上海垃圾分类初衷是极好的，垃圾分类也是必须要实行的，至于分类政策合不合理，这个是可以慢慢进步的嘛，上海人民习惯了也就好了。</p>
+<p>在大部分地方，垃圾分类只是拾荒者的主要工作。你说搞笑不搞笑，环保部分天天在宣传 3R（Reduce, Reuse, Recycle） 保护环境减少垃圾，最后对 3R 贡献最大的竟然是完全不知道 3R 概念只为谋生计的拾荒者，简直现代版『遍身罗绮者，不是养蚕人』。在香港我住的村子附近就有好几个拾荒的老人，每个星期三会把收集来的纸板全都运到停车场，等一辆大卡车过来收，他们才是纸板回收的功臣。类似的，陈小峰的妈妈也是极其节约水电的人，但是不是因为环保意识高，是因为穷。一般环保意识很高的人，家里都有 24 小时热水，看完电视也从来不会拔插头。</p>
+<p>2009 年 12 月在丹麦首都哥本哈根举行的联合国气候变化会议的结果算是并不乐观。明明是为了解决人类的终极问题，经济政治却成为其中的重要因素，不欢而散是肯定的。会议达成的不具法律约束力的《哥本哈根协议》意思就是大家全靠自觉，全靠自觉的意思就是啥都不用改，接着排放就可以了。也是，碳排放权等于发展权，不排放碳也就不要继续发展了。</p>
+<h2 id="七、未来展望"><a href="#七、未来展望" class="headerlink" title="七、未来展望"></a>七、未来展望</h2><p>热力学第二定律已经给出了清晰的答案，只要人类总体规模还在不断扩大，人类社会还在不断向前发展，垃圾围城和全球变暖一定会越来越严重。让人类停止发展是不可能的，大量生物的灭绝也是阻止不了的，垃圾分类和节能减排都只是给人类续一秒，治标不治本的。有没有治本的办法呢？有，这个办法叫做<strong>『把空调外机装到房间外面去』</strong>。人类面临的问题主要是因为有序的人类社会和为此产生的无序物质和能量在同一个地方（就好比空调和空调外机在一个房间）。这就像上面那台打开门的冰箱。虽然冰箱能制冷，但是整个房间还是会升温。</p>
+<p>理想的情况下，人类的『空调外机』应该要在地球之外，比如在月球上。工业产生的垃圾和余热排放在月球，只有成品运回地球给人类使用，地球就能维持在一个比较有序的状态下。同样的，人类生活和社会活动产生的垃圾需要定期向外太空排放。所以我们为什么要探测外太空，为什么要研究核能？因为我们要新的能源（地球上的化石能源到底是有限的，是过去几十亿年的太阳能存量），我们要新的外太空工业生产基地和垃圾场。</p>
+<h2 id="八、后记"><a href="#八、后记" class="headerlink" title="八、后记"></a>八、后记</h2><p>突然更新，因为最近几个月发现一个叫<strong>『卢克文工作室』</strong>的公众号，会写经济政治历史类剖析文章，内容有趣文笔诙谐，大受鼓舞，希望以后也能持续更新，两到三星期一篇，谢谢大家支持，欢迎大家私信陈小峰你的想法。下两次的更新已经在酝酿中了，小伙伴们要是有什么有趣的题目也可以私信我。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/uploads/wechatpay.jpg" alt="陈小峰 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/uploads/alipay.jpg" alt="陈小峰 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag"># 随笔</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/06/%E8%BF%9F%E5%88%B0%E7%9A%84%E9%99%88%E5%B0%8F%E5%B3%B0%E6%8B%8D%E7%85%A7%E4%B8%A4%E5%91%A8%E5%B9%B4/" rel="prev" title="迟到的陈小峰拍照两周年">
+                  <i class="fa fa-chevron-left"></i> 迟到的陈小峰拍照两周年
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/08/%E4%B8%96%E7%95%8C%E8%8A%AF%E7%89%87%E7%AE%80%E5%8F%B2%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E4%BB%99%E7%AB%A5%E5%8D%8A%E5%AF%BC%E4%BD%93%E4%B8%8E%E7%A1%85%E8%B0%B7/" rel="next" title="世界芯片简史（上）：仙童半导体与硅谷">
+                  世界芯片简史（上）：仙童半导体与硅谷 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈小峰</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

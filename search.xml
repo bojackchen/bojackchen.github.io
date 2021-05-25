@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Hexo + NexT 建站日志（四）</title>
+      <link href="2019/09/sitelog4/"/>
+      <url>2019/09/sitelog4/</url>
+      
+        <content type="html"><![CDATA[<p>虽然 <a href="https://gulpjs.com/">gulp</a> 工具可以帮助压缩网站源文件的大小，但是需要额外输入执行一次 gulp 命令，确实有些麻烦。<br>一个更好的工具是 hexo-all-minifier，这一个工具集成了 html，css 和 js 源文件的压缩功能，是很好的替代品。而且不需要额外输入命令，hexo g 命令执行时会自动进行压缩工作。</p><span id="more"></span><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>直接使用 npm 安装。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hexo-all-minifier</span><br></pre></td></tr></table></figure><p>这一个工具集成了所有需要的功能，详细信息可以参阅 <a href="https://github.com/chenzhutian/hexo-all-minifier">github page</a></p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>直接在 Hexo 网站的根目录的 _config.yml 文件中配置 hexo-all-minifier 的工作模式。例如：</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hexo-all-minifier</span></span><br><span class="line"><span class="attr">all_minifier:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">html_minifier:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">ignore_error:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">silent:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">css_minifier:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">silent:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">js_minifier:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">mangle:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">silent:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">image_minifier:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure><h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>Hexo-all-minifier 的运行不需要额外的命令。当安装了这个工具之后，hexo g 命令运行的同时所有的源文件会自动完成压缩。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 建站 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> NexT </tag>
+            
+            <tag> GitHub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo + NexT 建站日志（三）</title>
+      <link href="2019/09/sitelog3/"/>
+      <url>2019/09/sitelog3/</url>
+      
+        <content type="html"><![CDATA[<p>建站最后一步：处理一下 Hexo 工具生成的所有源文件。Hexo 生成出来的源文件中有大量的空白行，尤其是 html 文件。<br>我们使用 <a href="https://gulpjs.com/">gulp</a> 工具来压缩一下所有 html 和 css 文件的大小。gulp 是一个开源的 task runner，能够进行批量处理，达到我们的目的。</p><span id="more"></span><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>目前最新的 gulp 版本是 4，配合最新版本是 12 的 nodejs 食用刚刚好。使用以下命令安装 gulp。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save gulp</span><br></pre></td></tr></table></figure><p>除了 gulp 主体之外，我们还要额外安装用于压缩 html 文件的工具和压缩 css 文件的工具。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save gulp-htmlmin</span><br><span class="line">$ npm install --save gulp-clean-css</span><br></pre></td></tr></table></figure><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在 gulp 运行目录下面新建一个 gulpfile.js 文件就可以控制 gulp 工具的运行。为了压缩 html 和 css 文件的大小，gulpfile.js 文件的内容如下（使用的是 gulp 4 的最新语法）。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> minifyhtml = <span class="built_in">require</span>(<span class="string">&#x27;gulp-htmlmin&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> minifycss = <span class="built_in">require</span>(<span class="string">&#x27;gulp-clean-css&#x27;</span>);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">&#x27;minifyhtml&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src(<span class="string">&#x27;public/**/*.html&#x27;</span>)</span><br><span class="line">    .pipe(minifyhtml(&#123;</span><br><span class="line">      <span class="attr">removeComments</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">collapseWhitespace</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">minifyCSS</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">minifyJS</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">minifyURLs</span>: <span class="literal">true</span></span><br><span class="line">    &#125;))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">&#x27;public&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">&#x27;minifycss&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src(<span class="string">&#x27;public/**/*.css&#x27;</span>)</span><br><span class="line">  .pipe(minifycss(&#123;</span><br><span class="line">    <span class="attr">compatibility</span>: <span class="string">&#x27;ie8&#x27;</span></span><br><span class="line">  &#125;))</span><br><span class="line">  .pipe(gulp.dest(<span class="string">&#x27;public&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">&#x27;default&#x27;</span>, gulp.parallel(<span class="string">&#x27;minifyhtml&#x27;</span>, <span class="string">&#x27;minifycss&#x27;</span>));</span><br></pre></td></tr></table></figure><h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>在每次运行 hexo g 命令产生所有源文件之后，直接接着运行 gulp 命令，源文件中的 html 和 css 文件会直接被压缩至最小大小。之后可以进行后续的 deployment。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ gulp</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 建站 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> NexT </tag>
+            
+            <tag> GitHub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo + NexT 建站日志（二）</title>
+      <link href="2019/09/sitelog2/"/>
+      <url>2019/09/sitelog2/</url>
+      
+        <content type="html"><![CDATA[<p>这篇建站日志主要写了一些 Hexo 建站的进阶功能配置，比如打赏功能、侧边社交链接和友情链接、评论系统、Google Analytics 以及 Google Webmaster Tools 等这些使用工具，能够润色网站并且能够统计信息方便管理。</p><span id="more"></span><h2 id="Disqus-评论系统"><a href="#Disqus-评论系统" class="headerlink" title="Disqus 评论系统"></a>Disqus 评论系统</h2><p><a href="http://disqus.com/">Disqus</a> 是一个挺好的社会化评论系统。首先去 Disqus 官网注册一个账号，当然也可以用第三方账号登陆。多说评论系统关闭以后在国内实在是找不到像样的可以用的评论系统，所以不得已只能使用 Disqus，心塞。<br>登录之后新建一个站点，记住自己设置的<strong>域名</strong>，也叫 shortname，完成之后在站点配置文件中修改下面的字段就可以了。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Disqus</span></span><br><span class="line">disqus:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  shortname: yourshortname</span><br></pre></td></tr></table></figure><p>若是需要在特定页面关闭评论功能，只需要在 post 的 md 文件的 front-matter 增加</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># disable comment for this page</span></span><br><span class="line">comments: <span class="literal">false</span></span><br></pre></td></tr></table></figure><h2 id="侧边栏链接"><a href="#侧边栏链接" class="headerlink" title="侧边栏链接"></a>侧边栏链接</h2><p>网站的侧边栏可以放置<strong>社交链接</strong>并制定各自的图标，同时也可以放一些<strong>友情链接</strong>，两者都可以在主题配置文件中修改。<br>侧边栏的社交链接放在主题配置文件中。同时你也可以设置对应社交链接的图标，图标来自 <a href="http://fontawesome.io/">FontAwesome</a>。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Social Links</span></span><br><span class="line">social:</span><br><span class="line">  Example: https://example.com || fontawesomeiconname</span><br><span class="line">  GitHub: https://github.com/yourusername || github</span><br><span class="line">  Twitter: https://twitter.com/yourusername || twitter</span><br><span class="line">  微博: https://weibo.com/yourusername || weibo</span><br><span class="line"></span><br><span class="line">social_icons:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure><p>友情链接的配置也是很简单的，只需要直接在主题配置文件中增加 links 字段。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">links:</span><br><span class="line">  Title: http://example.com/</span><br></pre></td></tr></table></figure><h2 id="打赏功能"><a href="#打赏功能" class="headerlink" title="打赏功能"></a>打赏功能</h2><p>越来越多的平台（微信公众平台、新浪微博等）支持<strong>打赏功能</strong>，付费阅读时代越来越近，特此作者支持了微信打赏和支付宝打赏。只需要在主题配置文件中加入二者的收款二维码图片地址。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Reward (Donate)</span></span><br><span class="line">reward_settings:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">reward:</span><br><span class="line">  wechatpay: /path/to/wechatimage</span><br><span class="line">  alipay: /path/to/alipayimage</span><br></pre></td></tr></table></figure><h2 id="Google-Webmaster-Tools"><a href="#Google-Webmaster-Tools" class="headerlink" title="Google Webmaster Tools"></a>Google Webmaster Tools</h2><p>登录 <a href="https://www.google.com/webmasters/tools/">Google Webmaster Tools</a> 进行必要的设置，同时提交本网站 sitemap。sitemap 会在安装 hexo-generator-sitemap 之后自动产生。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hexo-generator-sitemap</span><br></pre></td></tr></table></figure><p>本网站的 sitemap 被收录了之后(一般在提交 sitemap 后几天)，这个工具就可以提供网站在 Google 上展示率的详细报告，并且能够从 Google 的角度发现网站的潜在问题等等。</p><h2 id="Google-Analytics"><a href="#Google-Analytics" class="headerlink" title="Google Analytics"></a>Google Analytics</h2><p><a href="https://analytics.google.com/analytics/web/">Google Analytics</a> 是一个非常强大的网站数据的分析和管理工具，能够统计浏览量等等各种网站信息，方便进一步分析和管理。<br>在 Google Analytics 网站登录之后，获得自己的 Tracking ID，通常是以 <strong>UA-</strong> 开头的。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">google_analytics:</span><br><span class="line">  tracking_id: yourtrackingID</span><br></pre></td></tr></table></figure><h2 id="阅读全文"><a href="#阅读全文" class="headerlink" title="阅读全文"></a>阅读全文</h2><p>默认情况下文章全文都会显示在首页上面，显得很冗长又没有意义。<strong>“阅读全文”</strong>这个功能就是为了解决这个问题。网站首页只会显示文章摘要，如果有兴趣可以点击“阅读全文”按钮进入全文页面继续阅读。三种方法都可以实现这个功能。</p><ol><li>在文章中使用 <!--more--> 截断，只有截断前的内容会显示在首页(Hexo 提供的功能，<strong>推荐使用</strong>)。</li><li>在文章的 front-matter 中添加 <strong>description</strong> 字段，并提供文章摘要</li><li>自动形成，在主题配置文件中添加<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto_excerpt:</span><br><span class="line">    <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">    length: 150</span><br></pre></td></tr></table></figure>建议使用第 1 种方法，和 Hexo 本身的兼容性比较好，支持最好。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 建站 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> NexT </tag>
+            
+            <tag> GitHub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo + NexT 建站日志（一）</title>
+      <link href="2019/09/sitelog1/"/>
+      <url>2019/09/sitelog1/</url>
+      
+        <content type="html"><![CDATA[<p>之前几天都在搞我的个人网站的事情。很久很久以前用 <a href="https://wordpress.org/">WordPress</a> 的时候，因为没有服务器的关系，所以其实也就是本地玩玩。再之后有用过 OpenShift，感觉还行但是访问起来好慢（不知道是不是因为在大陆的关系）。。。然后最后也就不了了之了。后来发现 <a href="https://github.com/">GitHub</a> 提供的 <a href="https://pages.github.com/">GitHub Pages</a> 挺好的，自己用起来又快又方便，完全可以通过 Git 来部署，建完之后别人访问起来也很快很方便。</p><span id="more"></span><p>所以这次，我用了 <a href="http://hexo.io/">Hexo</a> 加上 <a href="http://theme-next.iissnan.com/">Next</a> 主题配置了一个骚气的<a href="http://bojackchen.github.io/">个人网站</a>，大家可以访问一下，看看是不是很骚气很文艺很高逼格？！</p><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul><li>准备工作包括创建 GitHub Repository，名字一定要是 yourusername.github.io，yourusername 就是你的 GitHub 用户名，到时访问网站的时候就是这个 URL 地址去访问的。</li><li>安装 Node.js，Git 这些工具</li><li>安装 Hexo(一个小型的快速的静态博客网页生成器)，具体怎么安装参见 <a href="http://hexo.io/">Hexo 详细信息</a></li><li>安装 NexT 主题，这是为 Hexo 定制的主题，参见 <a href="https://github.com/iissnan/hexo-theme-next">NexT 主题</a>，直接从 GitHub 上面 clone 下来放在 Hexo 根目录下面的 theme 文件夹下面就可以。配置 Hexo 使用 NexT 主题。</li></ul><h2 id="Hexo-配置"><a href="#Hexo-配置" class="headerlink" title="Hexo 配置"></a>Hexo 配置</h2><p>配置 Hexo 的工作大概都在 <a href="https://hexo.io/docs/setup">Hexo setup</a> 里面，不再赘述，常用的命令也就是下面几条：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo cl  <span class="comment"># cl for clean, clean all the generated files and databases</span></span><br><span class="line">hexo g  <span class="comment"># g for generate, generate all the static website files</span></span><br><span class="line">hexo s  <span class="comment"># s for server, start Hexo server so that we can visit localhost:4000 for preview</span></span><br><span class="line">hexo d  <span class="comment"># d for deploy, Hexo helps you deploy the website to GitHub repository (yourusername.github.io)</span></span><br><span class="line">hexo g --d  <span class="comment"># first generate files, then deploy, all in one command</span></span><br></pre></td></tr></table></figure><p>Hexo 目录下面的 _config.yml 文件是一个重要的站点配置文件，里面能够配置站点的一些选项，具体参见 <a href="https://hexo.io/docs/configuration.html">Hexo configuration</a>.</p><h2 id="NexT-配置"><a href="#NexT-配置" class="headerlink" title="NexT 配置"></a>NexT 配置</h2><p>把 NexT clone 下来了之后，配置 Hexo 使用这个主题，之后就是配置 NexT 启用一些自带的功能和配置一些第三方功能。同样在 NexT 目录下面的 _config.yml 文件是一个重要的主题配置文件，里面能够配置主题的一些选项，具体参见 <a href="http://theme-next.iissnan.com/getting-started.html">NexT getting started</a>.</p><p>一些大家都喜闻乐见的功能，比如评论，分享，转发，留言等等，都可以在 NexT 上面通过<a href="http://theme-next.iissnan.com/theme-settings.html">主题配置</a>来实现；而一些<a href="http://theme-next.iissnan.com/third-party-services.html">第三方服务</a>，比如站内搜索，评论，留言和分享系统等等，都可以通过第三方网站和 NexT 的配置共同协作实现。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 建站 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> NexT </tag>
+            
+            <tag> GitHub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>世界芯片简史（上）：仙童半导体与硅谷</title>
+      <link href="2019/08/%E4%B8%96%E7%95%8C%E8%8A%AF%E7%89%87%E7%AE%80%E5%8F%B2%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E4%BB%99%E7%AB%A5%E5%8D%8A%E5%AF%BC%E4%BD%93%E4%B8%8E%E7%A1%85%E8%B0%B7/"/>
+      <url>2019/08/%E4%B8%96%E7%95%8C%E8%8A%AF%E7%89%87%E7%AE%80%E5%8F%B2%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E4%BB%99%E7%AB%A5%E5%8D%8A%E5%AF%BC%E4%BD%93%E4%B8%8E%E7%A1%85%E8%B0%B7/</url>
+      
+        <content type="html"><![CDATA[<p>1956 年 12 月 10 日，瑞典国王及王后早早地起床了，因为今天下午有一件重要的事情等待着他们。为了迎接这一盛典，他们需要花相当多的时间整束妆容，然后穿上隆重的礼服。按照惯例，今天下午他们需要出席诺贝尔奖颁发仪式，将诺贝尔奖授予今年的获得者们。今年的诺贝尔物理学奖授予了三个美国人：<strong>威廉·肖克利（William Shockley）、约翰·巴丁（John Bardeen）以及沃尔特·布拉顿（Walter Brattain）</strong>，『for their researches on semiconductors and their discovery of the transistor effect』。</p><p><img src="/uploads/2019/%E8%AF%BA%E8%B4%9D%E5%B0%94%E5%A5%96.jpg" alt="诺贝尔物理学奖三人组"></p><span id="more"></span><h2 id="一、集成电路前传"><a href="#一、集成电路前传" class="headerlink" title="一、集成电路前传"></a>一、集成电路前传</h2><p>20 世纪 20 年代，当欧洲正陷在一战的泥沼中的时候，美国却大发战争财，成为了一战中最大的受益方。当时的美国社会因为暴富进而声色犬马夜夜笙歌的场景可以从《了不起的盖兹比》这部电影中窥见一二。与此同时，1925 年，刚成立的贝尔实验室开始致力于基础理论的研究。这之后的二十年里，上个世纪物理学的理论发现慢慢被应用到实际世界中去，比如爱迪生发现的『爱迪生效应』被继续研究拓展，工程师们生产出了真正有实际应用价值的<strong>电子管</strong>（有的地方也叫<strong>真空管</strong>，因为包裹它的玻璃管的内部必须要抽真空）；再比如远距离电视传输和电子计算机。1946 年 2 月 14 日，世界第一台通用计算机埃尼阿克（ENIAC）诞生，使用的是电子管。因此，它占地面积约 170 平方米，重 30 英吨，耗电 150 千瓦，装有大约 18000 只电子管。最要命的是，电子管特别娇气，平均每隔 15 分钟就要烧坏一只，科学家们不得不满头大汗地不停更换。</p><p><img src="/uploads/2019/%E7%9C%9F%E7%A9%BA%E7%AE%A1.jpg" alt="真空管长这样，像不像热水瓶胆？"></p><p>1947 年，约翰·巴丁和沃尔特·布拉顿在贝尔实验室共同发明了<strong>点接触晶体管</strong>；随后，在 1948 年，威廉·肖克利发明了<strong>结型晶体管</strong>，之后结型晶体管也成为真正实用的晶体管。这三个人的发明真正开创了繁荣至今的现代半导体产业。相比于之前的电子管，晶体管的可靠性和寿命大大延长，体积和功耗也大大降低，很自然在之后的大约三十年的时间内是制造分立元件电路和集成电路的不二选择。</p><p><img src="/uploads/2019/%E6%99%B6%E4%BD%93%E7%AE%A1.png" alt="点接触晶体管"></p><p>时至今日，电子管这个老古董现在被一些人用来做炫酷的时钟了，还真挺炫酷的，就是不知道过多久会坏。</p><p><img src="/uploads/2019/%E7%9C%9F%E7%A9%BA%E7%AE%A1%E6%97%B6%E9%92%9F.jpg" alt="辉光管（电子管的一种）做的"></p><p>很快，新型的半导体行业吸引到了商业的目光。1951 年，得益于二战时期大量的美国陆军和海军的国防电子产品合同（美国参加二战后，全国工业生产被调动起来，一星期可以生产一艘轻型航母），地球物理业务公司（Geophysical Service Incorporated, GSI）整组，德州仪器（Texas Instruments, TI）诞生。1952 年，德州仪器买下了生产晶体管的专利证书，开始生产并研究晶体管，很快成功地制造出了<strong>世界上第一个商用硅材料晶体管</strong>。肖克利等三人发明的时候，晶体管是使用锗材料制作的。</p><p>为什么好端端地要从锗材料换成硅材料呢？因为摩托罗拉公司用锗材料晶体管制造了车载收音机，从此美国的有车一族就可以在车上收听广播和音乐了，极其拉风，风靡一时。但是好景不长，摩托罗拉很快收到了大量用户投诉，说车载收音机在午后的阳光下暴晒了一下午之后就不工作了。后来的研究发现，<strong>锗材料的温度性能很差</strong>，收音机被午后的阳光晒热了之后就不能正常工作了。很快，1954 年，在美国的一次会议上，来自德州仪器的工程师戈登·蒂尔（Gordon Teal）上台变了个戏法：他将连在收音机上的锗晶体管扔进一桶热油，收音机机立即不工作了。然后他又拆下锗晶体管，换上自己的硅晶体管，也扔进油桶里，收音机的音乐依然继续。</p><p>从此，锗材料就逐渐开始被抛弃了。</p><h2 id="二、仙童半导体"><a href="#二、仙童半导体" class="headerlink" title="二、仙童半导体"></a>二、仙童半导体</h2><p>1955 年，肖克利离开了贝尔实验室，回到了自己长大的加利福尼亚州。在获得 pH 值测定法的发明人阿尔诺德·贝克曼（Arnold Beckman）的投资之后，肖克利终于如愿以偿创办了肖克利半导体实验室（Shockley Semiconductor Laboratory）。由于当时斯坦福工学院院长弗里德里克·特曼（Frederick Terman）教授的热心推荐，公司地址选在加州旧金山湾区东南部的圣克拉拉谷（Santa Clara Valley），不知道这个地方？不急，换个名字你就知道了：<strong>硅谷（Silicon Valley）</strong>。</p><p><img src="/uploads/2019/%E7%A1%85%E8%B0%B7%E5%9C%B0%E7%90%86.png" alt="硅谷的地理位置"></p><p>因为有着<strong>『晶体管之父』</strong>这个头衔的加成，肖克利的公司迅速招聘到了很多慕名而来的专业人才，其中八个二十几岁的极其优秀的青年特别值得一提：罗伯特·诺伊斯（Robert Noyce）、戈登·摩尔（Gordon Moore）、金·赫尔尼（Jean Hoerni）、朱利亚斯·布兰克（Julius Blank）、尤金·克莱纳（Eugene Kleiner）、杰·拉斯特（Jay Last）、谢尔顿·罗伯茨（Sheldon Roberts）以及维克多·格里尼克（Victor Grinnich）。</p><p>这是前所未有的天才的集合。</p><p>1956 年，也就是肖克利半导体实验室成立一年之后，肖克利和另外两个人被授予诺贝尔物理学奖，兴奋异常的他将手下的年轻科学家们带到市中心豪华的『黛娜木屋』餐馆，举行香槟早餐会。这时，大伙都沉浸在蜜糖般的喜悦之中，认为『晶体管之父』肖克利能够带领他们创造新的辉煌，改写人类的历史。</p><p><img src="/uploads/2019/%E9%BB%9B%E5%A8%9C%E6%9C%A8%E5%B1%8B.jpg" alt="传说中的『黛娜木屋』餐馆"></p><p>然而，好景不长。</p><p>随着时间的推移，八个年轻人才发现，顶着无上光环的肖克利根本不是一个好领导。他对管理技巧一窍不通，但是偏偏十分自以为是，傲慢刻薄。1957 年 9 月 18 日，这八个年轻人一起向肖克利提交了辞呈，然后被肖克利骂成是<strong>『八叛徒（traitorous eight）』</strong>，后来这件事成为了硅谷历史上的一段佳话。这八个人在仙童照相机与仪器公司（Fairchild Camera &amp; Instrument ）的资助下，创办了子公司<strong>仙童半导体公司</strong>（Fairchild Semiconductor）。</p><p><img src="/uploads/2019/%E4%BB%99%E7%AB%A5%E5%8D%8A%E5%AF%BC%E4%BD%93.jpg" alt="仙童半导体的 logo"></p><p>1958 年 1 月，蓝色巨人 IBM 给了他们第一张订单，订购 100 个硅晶体管，用于该公司电脑的存储器。到这年年底，公司已经拥有 50 万销售额和 100 多名员工，依靠技术创新的优势，仙童半导体成长极快。</p><p>与此同时，德州仪器也没有闲着。</p><h2 id="三、集成电路正传"><a href="#三、集成电路正传" class="headerlink" title="三、集成电路正传"></a>三、集成电路正传</h2><p>德州仪器公司的工厂里面每天都是『热闹非凡』的。这里充斥着大量的低收入女工，和现在的富士康女工一模一样。她们的主要工作就是穿着闷热的防护服，一边看着显微镜，一边发着牢骚，一边把细小的晶体管焊接到一起去。这几年计算机硬件发展得越来越快，系统也越来越复杂，单个晶体管的尺寸也比较小，所以焊接女工们的牢骚也越来越多。</p><p>1958 年，34 岁的工程师杰克·基尔比（Jack Kilby）加入了公司。一个炎热的夏天，德州仪器公司的员工都出去休假了，但是按照惯例，作为新员工的基尔比因为没有攒够假期，所以没有资格享受长假。于是，他一个人来到了工作台前开始了沉思。他回想了一下以前听到过的女工的牢骚，脑中浮现出了几千个女工在工厂里面汗流浃背焊接晶体管的画面，以及德州仪器为此要付给她们的工资。花费好几千人来做晶体管焊接效率真的是太低了，为什么不在生产晶体管的时候就直接把所有的有源器件和无源器件<strong>做在一块衬底晶片上</strong>呢？</p><p>说干就干。很快，基尔比把这个想法变成了现实（毕竟工程师）。他在锗材料的衬底晶片上成功做出了世界上第一块集成电路，上面集成有晶体管、电阻和电容。他成功地展示了<strong>『集成电路』</strong>的想法，这样的电路从此就被称为『集成电路』。1959 年 2 月，德州仪器的专利代理人提交了一份『微型电子线路』的发明专利申请。</p><p><img src="/uploads/2019/%E9%94%97%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF.jpg" alt="世界上第一块锗集成电路"></p><p>仙童半导体坐不住了。</p><p>1959 年 7 月，仙童半导体也向专利局提出了他们公司的发明专利申请。仙童半导体的罗伯特·诺伊斯（上面八个年轻人中的第一个，也是『八叛徒（traitorous eight）』的领导人）也有了类似的集成电路的想法。得益于母公司是一家照相机公司，他基于硅晶片上的扩散技术和平面照相技术（也就是现代光刻的前身，此项技术德州仪器没有）做出了硅材料的集成电路，很好地解决了<strong>片上金属互连</strong>的问题。因为当时硅材料已经比锗材料便宜了，而且他的发明更实际更方便工业化生产，所以得到了资本家的青睐。基尔比的锗材料集成电路后来进了博物馆。</p><p><img src="/uploads/2019/%E7%A1%85%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF.jpg" alt="罗伯特·诺伊斯的硅集成电路"></p><p>很快，两个巨大的军工项目大大促进了集成电路的发展：阿波罗登月计划（Apollo Project）和『民兵（Minuteman）』导弹计划。这两个东西都要飞，对重量和体积的要求异常严格。集成电路刚刚好满足了体积小，重量轻的要求，在项目中大放异彩。体量巨大的军工项目这一波节奏，带得集成电路迅速普及。</p><p>1966 年，基尔比和诺伊斯同时被富兰克林学会授予巴兰丁奖章，基尔比被誉为<strong>『第一块集成电路的发明家』</strong>，而诺伊斯被誉为<strong>『提出了适合于工业生产的集成电路理论』</strong>的人。1969 年，法院最后的判决下达，也从法律上实际承认了<strong>『集成电路』</strong>是一项同时的发明。基尔比因此获得了 2000 年的诺贝尔物理学奖以表彰他在集成电路领域的贡献。</p><h2 id="四、硅谷"><a href="#四、硅谷" class="headerlink" title="四、硅谷"></a>四、硅谷</h2><p>1965 年，当时还在仙童半导体担任工程师的戈登·摩尔在《电子学杂志》（Electronics Magazine）上发表了文章，预测单位面积集成电路上集成的晶体管每隔 12 个月会翻一番（1975 年改为 24 个月），集成电路性能也会得到相应的提升。这个著名的<strong>『摩尔定律』</strong>一直支配着集成电路制造业进入 21 世纪。一个很有说服力的例子就是，1997 年有人制作了一块边长 8 毫米的芯片，它的功能和速度完败当年占了一大个屋子的第一台通用计算机埃尼阿克。</p><p><img src="/uploads/2019/%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B.png" alt="摩尔定律"></p><p>1966 年，仙童已经是全球第二大半导体公司，仅次于德州仪器。到 1967 年，公司营业额已接近 2 亿美元。</p><p>然而，因为利润分配问题，仙童半导体与母公司产生了矛盾，仙童的一批核心骨干再次出走，其中比较著名的有：</p><ol><li>金·赫尔尼（Jean Hoerni）、杰·拉斯特（Jay Last）与谢尔顿·罗伯茨（Sheldon Roberts）创立 Amelco，就是后来的<strong>泰瑞达</strong>（Teledyne）</li><li>尤金·克莱纳（Eugene Kleiner）陆续创立 Edex、<strong>英特矽尔</strong>（Intersil） 等；</li><li>罗伯特·诺伊斯（Robert Noyce）与戈登·摩尔（Gordon Moore）创立<strong>英特尔</strong>（Integrated Electronics, Intel）；</li><li>杰里·桑德斯（Jerry Sanders），带着 7 位仙童员工创办<strong>超微半导体公司</strong>（Advanced Micro Devices, AMD）。</li></ol><p>就这样，围绕仙童周边，半导体公司以及更多的科技公司如雨后春笋般诞生。这些新企业把科技和创新的火种撒向圣塔克拉拉以及整个旧金山湾区，在这里燃起了燎原之火。1969 年，在这里召开了一次半导体工程师大会，400 位与会者中，只有 24 人未曾在仙童公司工作过。1971 年，美国《每周商业》报纸电子新闻的记者 Don Hoefler 在系列文章的标题上第一次使用了<strong>『硅谷』</strong>这个名称，因为当时当地的企业多数都是从事与硅材料半导体和计算机相关的产业。</p><p><img src="/uploads/2019/%E7%A1%85%E8%B0%B7%E7%A7%91%E6%8A%80%E5%85%AC%E5%8F%B8.jpg" alt="与仙童半导体有关的硅谷高科技公司"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>垃圾围城，全球变暖和躲不开的热力学第二定律</title>
+      <link href="2019/07/%E5%9E%83%E5%9C%BE%E5%9B%B4%E5%9F%8E%EF%BC%8C%E5%85%A8%E7%90%83%E5%8F%98%E6%9A%96%E5%92%8C%E8%BA%B2%E4%B8%8D%E5%BC%80%E7%9A%84%E7%83%AD%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E5%AE%9A%E5%BE%8B/"/>
+      <url>2019/07/%E5%9E%83%E5%9C%BE%E5%9B%B4%E5%9F%8E%EF%BC%8C%E5%85%A8%E7%90%83%E5%8F%98%E6%9A%96%E5%92%8C%E8%BA%B2%E4%B8%8D%E5%BC%80%E7%9A%84%E7%83%AD%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E5%AE%9A%E5%BE%8B/</url>
+      
+        <content type="html"><![CDATA[<p>人民网 2019 年 6 月 12 日报，上海 7 月 1 日起步入垃圾分类强制时代，居民任性倒垃圾最高可罚 200 元。单位混装混运，最高可罚 5 万元。另外，上海市旅游住宿业不再主动提供客房一次性日用品（六小样：牙刷、梳子、浴擦、剃须刀、指甲锉、鞋擦）。</p><p>先说结论：这是一件<strong>早就该做，必须要做，并且一定会持续做下去</strong>的事情。</p><span id="more"></span><h2 id="一、物理规律问题"><a href="#一、物理规律问题" class="headerlink" title="一、物理规律问题"></a>一、物理规律问题</h2><p>中学在学政治课程的时候，政治生活的书上是这么说的：</p><ol><li><p>当今世界的主题是和平与发展；</p></li><li><p>霸权主义和强权政治是维护和平与发展的主要障碍；</p></li><li><p>恐怖主义也是世界和平的重要问题。</p></li></ol><p>年轻的陈小峰那个时候就以为，解决<strong>霸权主义和恐怖主义</strong>是人类发展的关键。的确，当今世界受到霸权主义和恐怖主义的荼毒，和平与发展在全球范围受到阻碍，在部分区域被完全颠覆。全人类的命运仰仗于这些问题的合理解决，直到今天陈小峰也是这样的想法。</p><p>但是，后来随着知识水平的提高和认知思维的变化，陈小峰觉得解决霸权主义和恐怖主义依然很重要，但是已经不是最重要的了。刘慈欣在《三体》里面提到，<strong>『最高端的武器是物理规律武器』</strong>。同样的，最棘手的问题是物理规律问题。霸权主义和恐怖主义不是物理规律问题，是『人』导致的问题，最后也必将由『人』来解决。如果问题没有得到解决，那一定是有『人』不想解决，甚至有『人』在阻碍问题的解决。如果最后问题失控，『人』灭绝了，这些问题自然也随之消失了。</p><p>但是物理规律问题不一样，它受物理规律支配，且不以『人』的意志为转移。不管人类愿不愿意，这个问题就在那里，它和宇宙同寿，不像霸权主义和恐怖主义那样是由『人』创造出来的；直到人类灭绝，霸权主义和恐怖主义消失，这个问题也依然会持续下去。最要命的是，这个问题从一开始就是不可解决又不可跨越的，若是胆敢违抗它，那就必须做好被迫每时每刻都要和它作斗争的准备，直到自身消亡，因为这个问题本身是绝对不会消亡的。</p><p>那么当今世界有什么问题是『物理规律问题』呢？有，<strong>垃圾围城</strong>和<strong>全球变暖</strong>。霸权主义和恐怖主义这样的问题作用于小范围，而且会随着国际形势变化；而物理规律问题可不会跟你商量，它作用于全宇宙，当然也一定会降临到你头上。全球变暖中学政治课本就提到过，垃圾围城在课本角落里面用一句话带过，为什么陈小峰会觉得这两个问题是人类面临的最重要的问题呢？它们是物理规律问题吗？支配它们的物理规律是什么呢？</p><h2 id="二、躲不开的热力学第二定律"><a href="#二、躲不开的热力学第二定律" class="headerlink" title="二、躲不开的热力学第二定律"></a>二、躲不开的热力学第二定律</h2><p><img src="/uploads/2019/thermodynamics.png" alt="热力学第二定律"></p><p>热力学第二定律有很多种表述：</p><p><strong>克劳修斯表述</strong>：热量不能自发地从低温物体转移到高温物体。</p><p><strong>开尔文表述</strong>：不可能从单一热源取热使之完全转换为功而不产生其他影响。</p><p><strong>熵增原理表述</strong>：在自然过程中，一个孤立系统的总混乱度（即『熵』）不会减小。</p><p>中学的时候陈小峰刷物理题的时候遇到过一道很有意思的题目：一个完全隔热的房间里面有一台冰箱，冰箱插上电并且冰箱门是打开的，问足够长的时间之后，房间的温度会上升还是会下降？</p><p>一样的，这题目有很多种解答方法：</p><p><strong>解答一</strong>：根据克劳修斯的表述，冰箱能够把冰箱内部（低温物体）的热量转移到冰箱外部（高温物体），这一定不是自发的，即冰箱要用电，压缩机要做功，那么房间内部的温度会上升，因为冰箱内部的热量只是换了个位置，而压缩机所做的功最后会变成了热量耗散在房间里面，所以房间温度会升高。</p><p><strong>解答二</strong>：宏观地看，这个房间与外界没有热交换，而且有净能量流入（冰箱的电能），不管这些能量用来做什么了，最后一定会耗散成热量留在房间里，所以房间温度会升高。</p><p>自然情况下，水往低处流，或者热量从高温物体往低温物体传导，都是自发的（参见克劳修斯表述）。一个冰箱能把冰箱内部的热量转移到外部，为了让这一<strong>逆温度梯度的非自发热传导</strong>能够发生，冰箱自己要消耗能量，而且消耗的能量最终也是转化为热能。小伙伴们可以在旧一点的冰箱背后找到压缩机和散热板，用手去感受一下那里的温度。空调也是同样的原理，它能把房间内的热量搬到房间外，同时自己消耗能量，产生的热量和搬运的热量都是通过空调外机释放在房间外的。注意，房间内每少 1 焦耳的热量，房间外会多大于 1 焦耳的热量，因为这里面包含被转移出来的 1 焦耳和为了实现非自发热传导做功所消耗的能量。至于这个大于 1 焦耳到底是多少，参见空调能效比。</p><p><img src="/uploads/2019/EER.png" alt="空调制冷能效 EER"></p><p>空调的制冷能效 EER = 制冷量 / 制冷消耗功率。例如一个 EER = 3.6 的空调，<strong>那么房间内每少 1 焦耳的能量，房间外会多 1.278 焦耳的能量</strong>，是赔本生意。赔本生意为什么还有人做？因为房间里面确实舒服了，这种时候管他外面怎么样呢。</p><h2 id="三、垃圾围城"><a href="#三、垃圾围城" class="headerlink" title="三、垃圾围城"></a>三、垃圾围城</h2><p>热力学第二定律是最接近哲学和宇宙真理的物理规律，所以能在很多现实世界问题中找到它的存在，比如垃圾围城问题。</p><p>首先，垃圾作为一种极度混乱的系统，熵值很大（参见熵增原理表述）。<strong>『熵』</strong>是用来描述系统混乱程度的物理量，比如一个整理过的房间就比混乱的房间熵值要小，低温物体的熵值也要比高温物体小。所以垃圾到底是怎么来的呢？就像房间里不开空调的话，慢慢地就会和外面一样热，为了维护人类自身和社会的高度有序（任何生物都是高度有序的系统），我们必须像空调一样一刻不停地把内部增加的熵转移出去，过程中当然也会额外制造一些熵。我们要呼吸吃饭喝水睡觉维持身体的运作，会产生各种垃圾和废热；我们的社会要造楼铺桥修路挖坑，会产生建筑垃圾，等等等等。另外，不要忘了，增加的熵一定大于减小的熵，就像房间里面搬走 1 焦耳的热量之后，最后房间外面会多出来 1.278 焦耳的热量。只要生物没有灭绝，人类社会还要继续发展，就会有源源不断的垃圾产生出来，这些垃圾是<strong>人类新陈代谢</strong>和<strong>人类社会维持秩序</strong>所必须要产生的废物。</p><p>垃圾，说白了就是人类这个高度有序的生物和人类社会这个高度有序的系统，为了对抗熵增理论（孤立系统的熵一定是增加的）所产生的必要的无序废物（两部分：内部转移出来的熵和做功额外产生的熵）。人类越多，人类社会越发展，产生的垃圾也一定越多，这是物理规律。所以说，垃圾围城是一个永久困扰人类的问题，人口越多，人类越是发展，垃圾围城问题就越是严重。</p><p>但是过去人类几千年历史上怎么好像没有听说过垃圾多得成为一个问题的故事？因为垃圾围城这样的<strong>『特权』</strong>只有工业革命之后的人类才有。是的，你没有听错，<strong>垃圾围城是『特权』</strong>，不是任何历史时期的人类都可以遇到的。想象一下工业革命前的劳工要挖运河，力气哪里来的？呼吸吃饭喝水睡觉。饭哪里来的？猪牛羊菜水稻小麦。猪牛羊哪里来的？家家户户圈养的。怎么圈养家禽的？给它们吃草。草和水稻小麦哪里来的？地里长出来的。地里为什么能长吃的？太阳。</p><p>同学们！！！我们得出了一个了不得的结论！！！工业革命以前，人类社会能发展到哪一步，不是人类所能左右的，是<strong>太阳</strong>说了算的！！！地球上所有的能量传递假设都是 100% 好了，每年太阳辐射到中国土地的能量假设是 4 万万万万亿焦耳，那么地里最多也只能长出这么多等值的粮食，人也只能吸收这么多等值的能量，自然也只能做这么多等值的功以维持自身和社会的有序，以致于<strong>人类社会最高只能发展到某一个特定程度</strong>，在那个程度下，刚刚好每年需要 4 万万万万亿焦耳的功来把内部增加的熵转移走以维持现状，从此不能再向前发展哪怕一丁点。举个例子，就像一个冰箱只能制冷到零下二十度，再往下就不行了，因为这个时候压缩机所做的功只能维持现状，除非换一个压缩机更给力的冰箱，当然也要用更多电。所以，工业革命以前，人类社会最高能发展到哪一步早就被太阳死死地钉住了。</p><p><img src="/uploads/2019/sunearth.png" alt="太阳能垄断地球发展"></p><h2 id="四、全球变暖"><a href="#四、全球变暖" class="headerlink" title="四、全球变暖"></a>四、全球变暖</h2><p>工业革命的伟大之处在于，人类学会了利用化石能源驱使机器，从而<strong>打破了太阳能的垄断</strong>。以前人类社会的发展受制于每年地球能接受多少太阳辐射的能量，现在我们学会了使用化石能源里面的太阳能存量（过去几十亿年存下来的太阳能）。从此，人类社会突飞猛进，因为可以用来做功的能量突然从太阳能扩展到了太阳能以及化石能源的化学能，能支持的人类社会的大小和有序程度大大提升，所以才有我们今天的世界人口和现代社会。</p><p>有个问题，压缩机做的功最后也会变成热，导致冰箱外面增加的热量其实大于里面减少的热量。化石能源也是如此，燃烧之后用来做功，做功完成后全部转化为热量耗散在大气中。以 <strong>2015 年世界能源消耗量</strong>（已经全都换算为原油当量）为例，我们来做一个简单的计算。</p><p><img src="/uploads/2019/2015energy.png" alt="2015 年世界能源消耗总量"></p><p>原油的燃烧值是 42 MJ/kg，2015 年全世界消耗的原油当量是 11306.4 X 10^9 kg，因此产生的总热量是 4.75 X 10^20 J。假设所有的能量耗散在大气层中。大气的比热是 1005 J/(kg*K)（定压，300 K 测得），但是大气的总质量是多少呢？注意，大气压强就是大气的总重力作用在地球表面的结果，所以大气总重力 = 大气压 X 地球表面积 = 5.15 X 10^19 N。从工业革命到现在 160 年，假设每年燃烧化石燃料的量是线性递增的，<strong>那么这 160 年来的总热量足够让地球大气上升 7.342 ℃</strong>（肯定不准确，因为我们忽视了大气对宇宙空间的热辐射和海洋，只是个非常粗略的估计）。</p><p>同学们！！！我们又得出了一个了不得的结论！！！近一百多年来的全球变暖，刨去地球本身的因素，很重要一个原因就是因为<strong>人类化石能源的燃烧</strong>！！！人类社会空前的有序程度需要大量的能量用来做功从而得以维持，这些能量主要来自于化石能源的燃烧，产生的热量耗散在空气中，自然就会导致全球变暖，更何况还有燃烧产生的温室气体的加成（此部分加成不知道怎么算，有小伙伴有想法可以私信我）。</p><h2 id="五、熵"><a href="#五、熵" class="headerlink" title="五、熵"></a>五、熵</h2><p>总体而言，<strong>无序系统有两种表现形式</strong>，一种是物质的（垃圾），一种是能量的（热量）。这些无序物质和能量的数量直接和人口以及人类社会的有序程度成正比。因此，垃圾围城和全球变暖是物理规律问题，是人类的终极问题，其严重程度和解决它们所需要的努力，远大于所谓的霸权主义和恐怖主义。事实上，人类只要存在一天，就要和这些问题作无休止的斗争，直到自身消亡。</p><p>事实上，地球从出现第一个单细胞生物以来，所有生物就在无休止地和热力学第二定律作斗争。斗争非常成功，人类这样的高智商的社会生物得以养成。为什么宇宙会突然孕育出如此逆天的生命，也就是<strong>在一个小范围内创造了一个稳定的低熵系统</strong>呢？薛定谔如是说：<strong>『生命是什么？生命是一个美丽的巧合，是宇宙在奔向熵最大的热寂过程中，给自己创造出来的观众。』</strong></p><h2 id="六、上海垃圾分类与哥本哈根会议"><a href="#六、上海垃圾分类与哥本哈根会议" class="headerlink" title="六、上海垃圾分类与哥本哈根会议"></a>六、上海垃圾分类与哥本哈根会议</h2><p>现如今的地球，无序的物质（垃圾）大量侵占了生物赖以生存的陆地和海洋，无序的能量（热量）导致冰川融化、海平面升高和气候异常。Nature Research 报，联合国资助的一项里程碑式报告发现，农业是地球生态系统面临的最大威胁之一。根据迄今为止最全面的一份地球生态系统报告，多达一百万个动植物物种正因人类活动面临灭绝，其中很多将发生在几十年内。为了支持庞大又有序得空前绝后的人类社会的发展，大约 75% 的陆地和 66% 的海洋区域被大幅改变，大量的垃圾排放在无人区域。原有生物栖息地被侵占，剩余栖息地质量变差，地球气候异常，导致大量动物灭绝，情理之中。</p><p>人类为了解决垃圾围城和全球变暖这两个物理规律问题有过值得敬佩的努力。</p><p><strong>垃圾分类</strong>是人类解决垃圾围城这一永恒物理规律问题的一小小小小小小小小步。处理垃圾的主要手段是<strong>卫生填埋、高温堆肥和焚烧</strong>。填埋是最主要手段，堆肥仅限部分有机可降解垃圾，焚烧因为有污染，所以要么技术过关，要么不用，除非放弃治疗（参见最近中国停止进口洋垃圾之后露天焚烧了好久，建成垃圾焚烧厂后还要再烧 5 年烧完的韩国垃圾山）。</p><p><img src="/uploads/2019/korean.png"><br><img src="/uploads/2019/5years.png" alt="燃烧中的韩国垃圾山"></p><p>以北京为例，北京附近的垃圾处理厂分布如下：</p><p><img src="/uploads/2019/beijingmap.jpg" alt="北京附近垃圾处理厂分布"><br><img src="/uploads/2019/beijinglist.jpg" alt="北京垃圾处理厂列表"></p><p>我猜这种垃圾处理公司长期处于不怎么盈利又一直过载的情况，因为又不体面又没钱赚，资本是绝对不会支持的，但是北京人民产生的垃圾可是一年比一年多。所以 2019 年 7 月 1 日起，上海开始实行<strong>示范性强制垃圾分类</strong>，希望从源头帮助垃圾处理产业先做一点事，帮助之后的垃圾回收、填埋、堆肥和焚烧，减轻大城市垃圾处理的压力。上海垃圾分类初衷是极好的，垃圾分类也是必须要实行的，至于分类政策合不合理，这个是可以慢慢进步的嘛，上海人民习惯了也就好了。</p><p>在大部分地方，垃圾分类只是拾荒者的主要工作。你说搞笑不搞笑，环保部分天天在宣传 3R（Reduce, Reuse, Recycle） 保护环境减少垃圾，最后对 3R 贡献最大的竟然是完全不知道 3R 概念只为谋生计的拾荒者，简直现代版『遍身罗绮者，不是养蚕人』。在香港我住的村子附近就有好几个拾荒的老人，每个星期三会把收集来的纸板全都运到停车场，等一辆大卡车过来收，他们才是纸板回收的功臣。类似的，陈小峰的妈妈也是极其节约水电的人，但是不是因为环保意识高，是因为穷。一般环保意识很高的人，家里都有 24 小时热水，看完电视也从来不会拔插头。</p><p>2009 年 12 月在丹麦首都哥本哈根举行的联合国气候变化会议的结果算是并不乐观。明明是为了解决人类的终极问题，经济政治却成为其中的重要因素，不欢而散是肯定的。会议达成的不具法律约束力的《哥本哈根协议》意思就是大家全靠自觉，全靠自觉的意思就是啥都不用改，接着排放就可以了。也是，碳排放权等于发展权，不排放碳也就不要继续发展了。</p><h2 id="七、未来展望"><a href="#七、未来展望" class="headerlink" title="七、未来展望"></a>七、未来展望</h2><p>热力学第二定律已经给出了清晰的答案，只要人类总体规模还在不断扩大，人类社会还在不断向前发展，垃圾围城和全球变暖一定会越来越严重。让人类停止发展是不可能的，大量生物的灭绝也是阻止不了的，垃圾分类和节能减排都只是给人类续一秒，治标不治本的。有没有治本的办法呢？有，这个办法叫做<strong>『把空调外机装到房间外面去』</strong>。人类面临的问题主要是因为有序的人类社会和为此产生的无序物质和能量在同一个地方（就好比空调和空调外机在一个房间）。这就像上面那台打开门的冰箱。虽然冰箱能制冷，但是整个房间还是会升温。</p><p>理想的情况下，人类的『空调外机』应该要在地球之外，比如在月球上。工业产生的垃圾和余热排放在月球，只有成品运回地球给人类使用，地球就能维持在一个比较有序的状态下。同样的，人类生活和社会活动产生的垃圾需要定期向外太空排放。所以我们为什么要探测外太空，为什么要研究核能？因为我们要新的能源（地球上的化石能源到底是有限的，是过去几十亿年的太阳能存量），我们要新的外太空工业生产基地和垃圾场。</p><h2 id="八、后记"><a href="#八、后记" class="headerlink" title="八、后记"></a>八、后记</h2><p>突然更新，因为最近几个月发现一个叫<strong>『卢克文工作室』</strong>的公众号，会写经济政治历史类剖析文章，内容有趣文笔诙谐，大受鼓舞，希望以后也能持续更新，两到三星期一篇，谢谢大家支持，欢迎大家私信陈小峰你的想法。下两次的更新已经在酝酿中了，小伙伴们要是有什么有趣的题目也可以私信我。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>迟到的陈小峰拍照两周年</title>
+      <link href="2019/06/%E8%BF%9F%E5%88%B0%E7%9A%84%E9%99%88%E5%B0%8F%E5%B3%B0%E6%8B%8D%E7%85%A7%E4%B8%A4%E5%91%A8%E5%B9%B4/"/>
+      <url>2019/06/%E8%BF%9F%E5%88%B0%E7%9A%84%E9%99%88%E5%B0%8F%E5%B3%B0%E6%8B%8D%E7%85%A7%E4%B8%A4%E5%91%A8%E5%B9%B4/</url>
+      
+        <content type="html"><![CDATA[<p>两年前的一二月份，陈小峰<strong>斥巨资买了一台相机</strong>，后面陆陆续续也添了几支镜头。现在的所有设备是：</p><ol><li><p>Nikon D7200 机身（中高端单反，APS-C 画幅）</p></li><li><p>Nikon AF-S DX NIKKOR 18-140mm f/3.5-5.6G ED VR（标准镜头）</p></li><li><p>Nikon AF NIKKOR 50mm f/1.8D（人像镜头）</p></li><li><p>Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR（广角镜头）</p></li><li><p>SIRUI A-1005 Y-10 三角架</p></li></ol><p>入单反坑的第二年，出去拍照的次数有减少，可能确实新鲜感过了，到处跑去拍照也嫌累了。平时出去玩也很少能够拍到像样的照片，只能勉强算是简单的记录，因为时间和地点不对。好的照片还是得<strong>提前计划</strong>，然后在<strong>合适的时间和合适的地点</strong>才能拍到，尤其是风景照。</p><p>拍照两周年了，仿效去年，特此在所有照片中选出陈小峰个人最满意的 12 张照片，放出来让大家批评批评（虽然晚了两个多月。。。今年都比较懒，啥都不想干）。看完图之后下面有投票的哦，小伙伴们可以<strong>从 12 张照片里面选出你最喜欢的 4 张（最多选 4 张）投票，也可以在下方留言区让我知道哪些照片大家喜欢，哪些大家不喜欢。</strong></p><span id="more"></span><p>友情提醒：单击图片可以放大查看哦</p><ol><li>香港 foggy 大学<br>2018 年 3 月 5 日。学校外面的海上突然<strong>起雾</strong>，特别好看。特别搞笑的是 foggy 又是起雾的意思，又是香港科技大学的“科技”的广东话发音，特别应景哈哈哈哈。其实还拍了延时视频，附在后面。看这雾气，有没有<strong>“海客谈瀛洲，烟涛微茫信难求”</strong>的感觉？**</li></ol><p><img src="/uploads/2019/candidate1.jpg" alt="香港 foggy 大学"></p><ol start="2"><li>甲居藏寨<br>2018 年 6 月 4 日。在<strong>川西</strong>旅行，<strong>甲居藏寨</strong>是丹巴藏族的一个聚居地，依山而建，从河谷慢慢往上，高度差应该有一千米以上。当天是天气从阴雨开始放晴的第一天，<strong>有云又有阳光</strong>，所以可以看到照片上的阴影区和向光面，斑驳的光线，特别好看。</li></ol><p><img src="/uploads/2019/candidate2.jpg" alt="甲居藏寨"></p><ol start="3"><li>卡子拉山<br>2018 年 6 月 5 日。依旧在<strong>川西</strong>，当天车子连续开过了好多座山，路过<strong>卡子拉山</strong>的时候拍的。大风吹着经缦，草地上有很多人，天气也完全放晴了，阳光非常充足。川西的<strong>天空是真的特别蓝</strong>。</li></ol><p><img src="/uploads/2019/candidate3.jpg" alt="卡子拉山"></p><ol start="4"><li>亚丁银河<br>2018 年 6 月 6 日。在<strong>稻城亚丁景区</strong>里面，大概在半夜十二点拍的银河。川西山区里面没有光污染，很适合拍银河，只可惜我没有特别好的装备，所以只能将就着拍。亚丁是真的很好看，还有很多照片没来得及 P，以后再放出来给大家看。</li></ol><p><img src="/uploads/2019/candidate4.jpg" alt="亚丁银河"></p><ol start="5"><li>赛马会大堂<br>2018 年 6 月 18 日。趁着周末特地早起爬起来，在三楼楼上拍<strong>学校的香港赛马会大堂（Atrium）</strong>。周末的早上，人特别少，稍微等了一会儿等到电梯上各自有人的时候按的快门。</li></ol><p><img src="/uploads/2019/candidate5.jpg" alt="赛马会大堂"></p><ol start="6"><li>闪电<br>2018 年 8 月 22 日。夏季的雷雨，结果雨小了一点之后电闪雷鸣却不停，所以屁颠屁颠跑去<strong>抓拍闪电</strong>了。非常幸运，抓拍了一个多小时，终于拍到这么一张特别好看的照片，看着像渡劫一样。抓拍的意思其实是让相机自动拍啦，比如每十秒中八秒钟在拍，两秒钟休息，然后人只要在旁边看着就好。</li></ol><p><img src="/uploads/2019/candidate6.jpg" alt="闪电"></p><ol start="7"><li>宝石山保俶塔<br>2018 年 10 月 2 日。国亲节去<strong>杭州</strong>玩，在人从众𠈌𠈌𠈌𠈌𠈌𠈌𠈌𠈌𠈌的白堤拍的<strong>宝石山和保俶塔</strong>。天气很好，蓝天加上一点点白云，初秋的色彩从山上的林木就看得出来。</li></ol><p><img src="/uploads/2019/candidate7.jpg" alt="宝石山保俶塔"></p><ol start="8"><li>栖霞山秋意<br>2018 年 10 月 3 日。国庆从杭州转战<strong>南京，栖霞山</strong>郊游。下午的阳光穿过初秋的枫叶照下来，特别舒服特别恬静，星星眼.jpg 的既视感。</li></ol><p><img src="/uploads/2019/candidate8.jpg" alt="栖霞山秋意"></p><ol start="9"><li>月湖公园晚霞<br>2018 年 10 月 6 日。国庆节又从南京转战<strong>宁波</strong>，在天一阁参观完出来在月湖公园看日落，<strong>晚霞</strong>的颜色特别浓特别漂亮，天空也非常干净，看这橘色到红色的过渡，我心都要化了。</li></ol><p><img src="/uploads/2019/candidate9.jpg" alt="月湖公园晚霞"></p><ol start="10"><li>晚霞维港<br>2018 年 12 月 14 日。去<strong>香港理工大学</strong>参加一个课程，下午放学之后直奔<strong>维港红磡段</strong>，刚刚好在日落之后<strong>晚霞</strong>起来之时到了，拍下这张照片。若是能稍微再早十分钟的话其实会更加好看，主要是去的路上不熟，走错了好几次，特别晕头转向。</li></ol><p><img src="/uploads/2019/candidate10.jpg" alt="晚霞维港"></p><ol start="11"><li>科大晚霞<br>2019 年 1 月 21 日。记得好像是连绵阴雨之后天气放晴，前几天就已经猜到<strong>日落和晚霞非常好看</strong>了，一直没去。科大因为地理位置只有日出没有日落，所以只能从海边的操场往上拍山上<strong>晚霞笼罩下的香港科技大学校园</strong>。因为在日落前就在操场等着了，所以这次拍的是最佳的时辰。</li></ol><p><img src="/uploads/2019/candidate11.jpg" alt="科大晚霞"></p><ol start="12"><li>星轨<br>2019 年 1 月 29 日。香港虽然光污染严重没办法拍很好看的银河，但是在没有月亮的晚上，在村里拍星轨还是可以的。科大位置还是很偏的，光污染不那么严重，趁着<strong>没有月亮没有云彩可以拍星轨</strong>。只不过后来飘来一片云，打断了拍摄，所以星轨很短。</li></ol><p><img src="/uploads/2019/candidate12.jpg" alt="星轨"></p><p>好啦，2018 年 2 月到 2019 年 2 月这一年，陈小峰自己最满意的 12 张照片已经发送完毕，下面小伙伴们可以投票了哦！<strong>请选择你最喜欢的四张（最多）照片投票！</strong>截止日期 2019 年 5 月 13 日 00 ：00（下个星期一），投票选项对应的图如果忘了可以拉上去再复习一下的哦~~~有什么意见或者建议大家可以在<strong>下面留言，欢迎打赏</strong>！</p><p>最后的最后，依然把一周年的那段话贴出来分享给大家（原出处知乎），一直在提醒着我激励着我：</p><blockquote><p>很多人以为自己拍照不好，是因为不会调节光圈和快门。要知道，美术系的毕业生，都完美的掌握了绘画的技术，但这并不意味着他们能够成为画家。绘画的技术太复杂，所以很多人完美掌握了绘画技巧之后，才终于发现自己成为不了画家，因为他终于发现自己其实没有什么要画的。学会了写字，就没有任何事情可以阻止你写诗，但是绝大多数人都不会写诗。</p><p>我认识或者知道一些不同领域较有天分和才华的人。我的总结如下：如果一个人说，我想学摄影 / 我想学画画 / 我想学音乐，基本上，这个人就没戏。那些有戏的都是，我要搞摄影 / 我要搞音乐 / 我要画画。那些说，我想学XX的，潜意识里，想学的是魔法，是点石成金术，是化腐朽为神奇的力量。而这些，这个世界上其实没有。</p><p>我记得一句话特别好，大概说的是，如果你想造一艘船，你要做的，不是指挥别人去伐木和测量，而是培养他们对大海的渴望。如果你真有东西要表达，你自然就会健谈，或者会画画，或者会唱歌，或者会写诗，或者会作曲，或者会拍照。</p><p><strong>如果心灵有话要说，它自然会找到自己的语言。</strong></p><p>遵从内心，忠于内心。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>现实生活中的 “灭霸”</title>
+      <link href="2018/05/%E7%81%AD%E9%9C%B8/"/>
+      <url>2018/05/%E7%81%AD%E9%9C%B8/</url>
+      
+        <content type="html"><![CDATA[<p>刚刚上映的《复仇者联盟 3 》大家一定看得非常爽！反派居然成功了，邪恶居然战胜正义了。《复仇者联盟 3 》里面最出彩的不是超级英雄，反而是大反派：<strong>灭霸（Thanos）</strong>。他是一个<strong>激进的环保主义者</strong>，又拥有强大的能力和执行力，所以在电影最后做成了他想做的事情。他发现宇宙中的生物因为过度繁衍导致资源极度紧张，所有的生物都过得比较悲惨，他的母星甚至因为这个原因灭绝了；而他在他女儿 gamora 的母星实施 <strong>“抹去一半人口”</strong> 政策之后，吃不饱穿不暖环境污染又严重的星球最后发展成了人人安居乐业又青山绿水的新气象。所以电影里灭霸才那么偏执地要做 “宇宙计生委” 的大佬，要在全宇宙实施这样的政策：因为母星的灭绝，也因为看到了一线希望。</p><p><img src="/uploads/2018/thanos.jpg" alt="灭霸" title="灭霸 Thanos"></p><span id="more"></span><p>虽然要是现实生活中有这样一个灭霸的存在，大家一定会觉得非常可怕，但是艺术总是源于生活又高于生活的嘛。电影里的灭霸只是现实生活做了艺术加工和必要的夸张，以体现这个激烈的矛盾。我觉得<strong>现实生活中的 “灭霸” 是存在的</strong>，就在我们这个人口爆炸的地球上，只是存在形式比较隐蔽，也没有电影里说得那么激进夸张和主观化，更多的只是客观规律在操持。只要我们仔细观察思考，我们一定可以找到几个 “灭霸” 存在的蛛丝马迹。</p><h2 id="旅鼠的故事"><a href="#旅鼠的故事" class="headerlink" title="旅鼠的故事"></a>旅鼠的故事</h2><p><img src="/uploads/2018/mouse.jpg" alt="旅鼠的故事" title="旅鼠的故事"></p><p><strong>《旅鼠之谜》</strong>是我中学时学到过的一篇课文。旅鼠是一种哺乳动物，这种群居的小型鼠在北极附近活动，包含北欧、美洲西北部、俄罗斯南部草原。它们虽然是哺乳动物，但在所有动物之中，甚至包括昆虫在内，是繁殖能力最强的动物，也许只有细菌分裂才能和它们相媲美。它们一年能生七八胎，每胎可生 12 个幼崽。更加有趣的是，只需 20 多天，幼崽即可成熟，并且开始生育。</p><p>传说，当北欧挪威的旅鼠数量达到一定数量時，例如一公顷有几百只，奇怪的现象就发生了：几乎所有的旅鼠一下子都变得焦躁不安起来，而且不再胆小怕事，毛发也从灰黑色变成鲜艳的橘红，使自己目标特别突出，甚至<strong>主动去挑衅天敌</strong>。另外，它们还会集体迁徙，逢山过山，遇水涉水，前赴后继，沿着一条笔直的路线奋勇前进，决不绕道，更不停止。一直奔到大海，仍然毫无惧色，纷纷跳将下去，被汹涌澎湃的波涛吞没，<strong>直到全军覆没为止</strong>。</p><p>当旅鼠的数量大到影响种族的生存的时候，旅鼠种族自己就选择了一个残忍但是能够保全种族的策略：<strong>牺牲一部分，保全一大批</strong>，而且没有个体能够反抗这写在基因里的适时自我毁灭。没有这一部分个体的牺牲，整个种族都可能在灭绝的边缘。</p><h2 id="战争和疾病"><a href="#战争和疾病" class="headerlink" title="战争和疾病"></a>战争和疾病</h2><p>说完动物，我们来看看人类社会。人类当然不会像旅鼠一样大规模地有计划地自杀，但是一样<strong>有机制能够在人口过剩时削减人口缓和矛盾</strong>，这是客观规律。<strong>战争和疾病</strong>就是最典型的在人类社会中潜藏的 “灭霸”，简单粗暴。以我现在能有的理解，战争和疾病是会不定期出现的（也是永远无法避免的，这是由客观规律决定的），其结果就是大量削减人口，就像灭霸打了一个响指，从而缓解因为人口激增带来的巨大矛盾。这之后，矛盾缓解，人口慢慢恢复，进入下一个循环。</p><p>我们来看看中国历史上战争的套路（未必所有的战争都是这样的，但是这是最典型的套路）：<strong>开朝 —— 修养生息 —— 人口增长 —— 社会矛盾加剧 —— 战争 —— 人口减少 —— 新朝代开朝</strong>。虽然说社会矛盾加剧未必都是因为人口增长，但是人口也是其中一个很重要的因素。</p><p><img src="/uploads/2018/war.jpg" alt="战争" title="战争"></p><p>类似的，疾病也是以这样的套路出现，像欧洲的黑死病。比如当一个城市中的人口多到一定规模的时候，公共卫生一定会因为压力过大而跟不上。公共卫生的矛盾慢慢积累起来，大规模的严重的致死疾病就会爆发，大量削减人口；人口减少之后，公共卫生的压力减小，人口慢慢开始恢复。</p><p><img src="/uploads/2018/disease.png" alt="疾病" title="疾病"></p><p>可以看到，<strong>战争和疾病</strong>的直接导火索是社会矛盾激化和公共卫生的巨大压力；而社会矛盾激化和公共卫生的巨大压力又大概率是<strong>人口过剩</strong>造成的。人口过剩的时候，战争和疾病就会出来 “打一个响指”，削减人口，稀释矛盾，然后蛰伏起来等下一次人口过剩触发这一机制。</p><h2 id="北上广深"><a href="#北上广深" class="headerlink" title="北上广深"></a>北上广深</h2><p>来到人类现代社会，发达的文明和高度的生产力使得人口上限增加，也使得战争和疾病没有那么容易爆发（但是肯定不会消失），所以近现代以来人口一直都在增长。这个时候的 “灭霸” 的表现形式也与时俱进了。</p><p>北上广深的高房价虽然有炒房的原因，但是根本的原因还是因为一线城市人多地少。北上广深的人口已经接近饱和了，所以自然地房价上升，从而抑制更多的人口流入。虽然不是靠 “灭霸” 式的一打响指消灭一半人口，而是靠<strong>遏制人口继续增长</strong>，但是也算是 “灭霸” 在现代人类社会的一个不太明显的体现。现代社会中的大型城市都是这样一个发展套路：<strong>人口迁入 —— 各方面压力增大 —— 房价上升 —— 抑制更多人口迁入</strong>。现在的北上广深就已经到了最后一个发展阶段，甚至已经开始不满足于抑制人口迁入，想要清理多余人口到其他城市。</p><h2 id="计划生育"><a href="#计划生育" class="headerlink" title="计划生育"></a>计划生育</h2><p>作为中国公民，大家对 <strong>“计划生育”</strong> 肯定是非常不陌生，这是一个相比上面更加宏观、更加可控的 “灭霸” 式人口控制，但是不是靠抹去人口，而是<strong>靠阻止过剩的人口出生</strong>。一听这个描述就可以感觉到后者明显高端和人性化了好多。计划生育的效果大家是有目共睹的，中国人口受到了控制，大家的生活也得到了改善。</p><p><img src="/uploads/2018/birth.jpg" alt="计划生育" title="计划生育"></p><p>所以，可以看到，除了 “抹去一半人口” 这样简单粗暴的方式，对人类来说其实还有更好的方式。人口问题确实是一个大问题，但是一样都是有解决办法的。兔子旅鼠这样的哺乳动物，<strong>保全自己种族的唯一方式就是数量</strong>，它们只能靠不停地生孩子来保证自己种族的延续，因此数量一定会一直在环境资源能承载的最大值。但是在这个情况下，出生率等于死亡率，所有的兔子都是过着最艰苦的生活。</p><p>但是人类作为地球上唯一的智慧生物，也是遍布地球最广泛的种族，不光是要靠数量赢得种族的延续，<strong>更多还需要考虑种族的质量</strong>；并且，数量绝对不应该保持在最大值，因为大家对生活质量的要求也是与日俱增的。人类能通过有意识地控制出生率来控制人口，使得数量不会处在最大值，人民的生活也能处在小康水平。而且人类有思想，受教育，能够更加明确自己对于其他生物和地球的责任，等等。这些都是人类文明的体现。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>“灭霸” 虽然是一个艺术形象，但是在人类的现代生活中一直是存在的，它可以看作一种对人口的控制力的体现，这种控制力可以来自客观规律也可以来自生物主观意愿。旅鼠只知道生孩子，永远把种族数量控制在客观规律允许的最大值，因为这是它们唯一的延续种族的方式。而人类有思想受教育，控制本种族人口的手段多很多也高明很多；如果也只知道生孩子，那和兔子还有什么分别。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>陈小峰拍照一周年大放送</title>
+      <link href="2018/03/%E9%99%88%E5%B0%8F%E5%B3%B0%E6%8B%8D%E7%85%A7%E4%B8%80%E5%91%A8%E5%B9%B4%E5%A4%A7%E6%94%BE%E9%80%81/"/>
+      <url>2018/03/%E9%99%88%E5%B0%8F%E5%B3%B0%E6%8B%8D%E7%85%A7%E4%B8%80%E5%91%A8%E5%B9%B4%E5%A4%A7%E6%94%BE%E9%80%81/</url>
+      
+        <content type="html"><![CDATA[<p>陈小峰拍照一周年大放送！</p><p>一年前的这个时候，陈小峰斥巨资买了一台相机，后面陆陆续续也添了几支镜头。现在的所有设备是：</p><ol><li>Nikon D7200 机身（中高端单反，C 画幅）</li></ol><p><img src="/uploads/2018/camera.jpg" alt="机身" title="机身"></p><span id="more"></span><ol start="2"><li>Nikon AF-S DX NIKKOR 18-140mm f/3.5-5.6G ED VR（标准镜头）</li></ol><p><img src="/uploads/2018/18-140.jpg" alt="标准镜头" title="标准镜头"></p><ol start="3"><li>Nikon AF NIKKOR 50mm f/1.8D（人像镜头）</li></ol><p><img src="/uploads/2018/50-1.8D.jpg" alt="人像镜头" title="人像镜头"></p><ol start="4"><li>Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR（广角镜头）</li></ol><p><img src="/uploads/2018/10-20.jpg" alt="广角镜头" title="广角镜头"></p><ol start="5"><li>SIRUI A-1005 Y-10 三角架</li></ol><p><img src="/uploads/2018/tripod.jpg" alt="三脚架" title="三脚架"></p><p>入单反坑的这一年，陈小峰在香港各处跑，爬山、下海或者逛街都会带着，有时候也会<strong>特别赶去某个地方就为了一张照片</strong>。回到学校，打开并不是很熟悉和擅长的 <strong>Lightroom 和 Photoshop 进行后期</strong>。前期后期都是<strong>边做边学，一路惊喜</strong>。</p><p>拍照一周年了，特此在所有照片中选出<strong>陈小峰个人最满意的 12 张照片</strong>，放出来让大家批评批评。看完图之后，小伙伴们可以从 12 张照片里面选出你最喜欢的 4 张（最多选 4 张），也可以在下方留言区让我知道哪些照片大家喜欢，哪些大家不喜欢，包括这 12 张和下面彩蛋的 6 张。</p><p>友情提醒：单击图片可以放大查看哦</p><ol><li>蜜蜂采蜜<br>2017 年 2 月 5 日。<strong>第一次</strong>带新买的相机出门，春节前后，上山找吊钟花（香港春节前后开放的很漂亮的花，因为很多人折回家，后来政府保护了）。下山的时候偶然看到路边的樱花开了，还有很多小蜜蜂在采蜜，于是就有了下面这张。现在回忆起来，这一年出门拍照的时候<strong>总是会和这样的好事不期而遇，给我一路惊喜</strong>。</li></ol><p><img src="/uploads/2018/candidate1.jpg" alt="蜜蜂采蜜" title="蜜蜂采蜜"></p><ol start="2"><li>彩虹邨<br>2017 年 3 月 25 日。特地跑过去拍的，香港公屋<strong>彩虹邨</strong>，因外墙涂成彩虹色而闻名，摄影小伙伴们聚集地。小彩蛋：<strong>下面的篮球刚好要进篮筐了哦</strong>~~~</li></ol><p><img src="/uploads/2018/candidate2.jpg" alt="彩虹邨" title="彩虹邨"></p><ol start="3"><li>乌溪沙日落<br>2017 年 4 月 2 日。学校做义工，上马鞍山捡垃圾。完成之后我看还早，吃了个饭随便找了附近的沙滩休息一下，结果<strong>这是一个少有的拍日落的好去处，当天又是极好的无云天气（又是惊喜）</strong>。和诸多同来的摄影人士一起拍下来这轮圆圆的<strong>春季落日</strong>。</li></ol><p><img src="/uploads/2018/candidate3.jpg" alt="乌溪沙日落" title="乌溪沙日落"></p><ol start="4"><li>D.I.Y.<br>2017 年 5 月 5 日。陈小峰的手机，小米 2A 终于退休了。。。正好在知乎上看到的一个教程，<strong>把旧手机拆开之后粘到相框里面，挂起来做装饰品。</strong>于是如法炮制，搞了一个下午，完成之后拍的。</li></ol><p><img src="/uploads/2018/candidate4.jpg" alt="D.I.Y." title="D.I.Y."></p><ol start="5"><li>怪兽大厦<br>2017 年 5 月 28 日。特地赶过去拍的又一个摄影人士聚集地。这是几栋公屋紧密矗立在一起形成的，香港<strong>逼仄的空间感</strong>在这里一览无余。变形金刚 4 （末尾场景是香港）曾经在这里取景。</li></ol><p><img src="/uploads/2018/candidate5.jpg" alt="怪兽大厦" title="怪兽大厦"></p><ol start="6"><li>西高山日落<br>2017 年 10 月 21 日。重新去了太平山，这次是硬爬上去的。然后继续爬上了西高山，这里是香港港岛西半边最高的点，所以是看日落拍日落的好去处。当天山顶真的人满为患。。。不过风景真的很好，<strong>有海有船有飞鹰，还有圆圆一轮落日</strong>。</li></ol><p><img src="/uploads/2018/candidate6.jpg" alt="西高山日落" title="西高山日落"></p><ol start="7"><li>维多利亚港全景（<strong>请横屏看</strong>）<br>2017 年 10 月 21 日。上面的日落拍完就下山拍夜景。这次了解香港多一点了，知道<strong>看夜景拍夜景不花钱就去卢吉道（古栈道）的观景台</strong>，就不要花钱上凌霄阁了。卢吉道的好机位可以拍下整个维多利亚港的夜景。左边是灯火通明的繁忙港口，右边是灯红酒绿的资本主义。</li></ol><p><img src="/uploads/2018/candidate7.jpg" alt="维多利亚港全景" title="维多利亚港全景"></p><ol start="8"><li>九曲十八弯（请横屏看）<br>2017 年 11 月 4 日，出门爬山，麦理浩径第七段加第八段，<strong>登针山，上草山，然后翻过香港最高山大帽山</strong>。走到腿抽筋终于到了大帽山山顶。大帽山向下远望，下山的路<strong>九曲十八弯</strong>，远处的层峦叠嶂和高楼林立，均在视线之下，别有一番风味。</li></ol><p><img src="/uploads/2018/candidate8.jpg" alt="九曲十八弯" title="九曲十八弯"></p><ol start="9"><li>科大远望<br>2017 年 11 月 26 日。爬山，香港科技大学南门门口的<strong>鹧鸪山</strong>，在山顶可以望到整个科大社区。远处那个半圆连着的一片就是科大，近处平房村屋是大埔仔村（我现在住的地方），商品房是傲瀧地盘。</li></ol><p><img src="/uploads/2018/candidate9.jpg" alt="科大远望" title="科大远望"></p><ol start="10"><li>农历十五的维港<br>2017 年 12 月 3 日。农历十五。第三次上太平山，<strong>趁着刚刚日落，满月刚刚升起来的时候</strong>，拍到了有晚霞、有满月、有灯光的维多利亚港夜景，色调温和又斑斓，这样的维港图网上绝对找不到。</li></ol><p><img src="/uploads/2018/candidate10.jpg" alt="农历十五的维港" title="农历十五的维港"></p><ol start="11"><li>深井烧鹅<br>2018 年 1 月 21 日。和实验室几个小伙伴去元朗看红叶，早饭<strong>米其林一星推介（大荣华餐厅）</strong>，下山到的地方是深井，晚饭<strong>米其林一星推介（裕记烧鹅）</strong>，简直美满！</li></ol><p><img src="/uploads/2018/candidate11.jpg" alt="深井烧鹅" title="深井烧鹅"></p><ol start="12"><li>血月全食<br>2018 年 1 月 31 日。预告的<strong>血月全食</strong>。虽然因为天气问题，月全食的五个重要关键点没有拍全（不过依然被冷风吹成了傻逼），但是还好拍到了开始、血月和结束的月亮，拼起来的图。</li></ol><p><img src="/uploads/2018/candidate12.jpg" alt="血月全食" title="血月全食"></p><p>好啦，陈小峰自己最满意的 12 张照片已经发送完毕，下面小伙伴们可以投票了哦！</p><p>彩蛋时间！<br>另有 6 张照片，没有入选上面的 12 强，作为彩蛋放送给大家！<strong>最后的最后还有陈小峰摄影一周年分享给大家的心得哦！不要错过，绝对货真价实。</strong></p><p>彩蛋 1) 维港夜景<br>2017 年 4 月 14 日。第一次上太平山，坐缆车，上<strong>凌霄阁</strong>，拍的维多利亚港夜景，机位和大部分网上能找到的图一模一样。</p><p><img src="/uploads/2018/bonus1.jpg" alt="维港夜景" title="维港夜景"></p><p>彩蛋 2) 大埔仔村日出<br>2017 年 8 月 6 日。去北京参加一个 summer school，从香港出发的那天<strong>很早起床</strong>，往窗外一望居然有这样的日出景色，甚是惊喜。因为时间匆忙，随随便便拍的，所以左下角成了去不掉的瑕疵。不过后来<strong>一路坐出租车，一路看着天空颜色变化，看着太阳升起来，看着天空亮起来，幸福感爆棚！</strong></p><p><img src="/uploads/2018/bonus2.jpg" alt="大埔仔村日出" title="大埔仔村日出"></p><p>彩蛋 3) 飞行在边缘<br>2017 年 10 月 21 日。西高山日落之后的晚霞，<strong>蓝色是天空，橘黄是晚霞，正好一架飞机飞行在冷暖边缘，特别应景。</strong></p><p><img src="/uploads/2018/bonus6.jpg" alt="飞行在边缘" title="飞行在边缘"></p><p>彩蛋 4) 大浪湾弄潮儿<br>2017 年 10 月 29 日。和实验室小伙伴再爬龙脊，下山到大浪湾，冲浪的人很多，于是陈小峰在礁石上坐着，拿 140mm 追着这些弄潮儿拍。<strong>运动真是人体最美的时候。</strong></p><p><img src="/uploads/2018/bonus3.jpg" alt="大浪湾弄潮儿" title="大浪湾弄潮儿"></p><p>彩蛋 5) 海港城晚霞<br>2017 年 12 月 24 日。圣诞节前后，出门爬山逛街然后和实验室还在香港的小伙伴搓一顿。在海港城的大阳台休息的时候看到日落，<strong>落日挂在对面港岛的高楼大厦之间，相映成趣。</strong></p><p><img src="/uploads/2018/bonus4.jpg" alt="海港城晚霞" title="海港城晚霞"></p><p>彩蛋 6) 红花荷<br>2018 年 1 月 21 日。元朗看红叶，红叶倒是没有很漂亮，反而发现了小粉红的红花荷。从开始拍照以来，<strong>很多次出门在外总是会有意料之外的惊喜出现，这也是摄影的一个很大的好处呢！ 出了门才知道真的会有馅饼掉在自己的头上呢~~~</strong></p><p><img src="/uploads/2018/bonus5.jpg" alt="红花荷" title="红花荷"></p><p>彩蛋的六张照片也已经放完了。如果有小伙伴觉得有比上面的十二张更好看的，<strong>请在下方留言！</strong><br>最后的最后，既然是陈小峰拍照一周年的大日子，想跟大家分享一段话（原出处知乎），一直在提醒着我激励着我：</p><blockquote><p>很多人以为自己拍照不好，是因为不会调节光圈和快门。要知道，美术系的毕业生，都完美的掌握了绘画的技术，但这并不意味着他们能够成为画家。绘画的技术太复杂，所以很多人完美掌握了绘画技巧之后，才终于发现自己成为不了画家，因为他终于发现自己其实没有什么要画的。学会了写字，就没有任何事情可以阻止你写诗，但是绝大多数人都不会写诗。</p><p>我认识或者知道一些不同领域较有天分和才华的人。我的总结如下：如果一个人说，我想学摄影 / 我想学画画 / 我想学音乐，基本上，这个人就没戏。那些有戏的都是，我要搞摄影 / 我要搞音乐 / 我要画画。那些说，我想学 XX 的，潜意识里，想学的是魔法，是点石成金术，是化腐朽为神奇的力量。而这些，这个世界上其实没有。</p><p>我记得一句话特别好，大概说的是，如果你想造一艘船，你要做的，不是指挥别人去伐木和测量，而是培养他们对大海的渴望。如果你真有东西要表达，你自然就会健谈，或者会画画，或者会唱歌，或者会写诗，或者会作曲，或者会拍照。</p><p><strong>如果心灵有话要说，它自然会找到自己的语言。</strong></p><p>遵从内心，忠于内心。</p></blockquote><p>也不知道大家同意不同意上面的观点。但是，至少对我来说，这段话是很有启发的。<strong>我手上握着的相机到底还只是一个铁盒子，能不能拍出好照片，还是得看铁盒子后面的小脑袋里面有什么东西。</strong>所以我坚信，<strong>文艺作品的创造，向来是不会受到物质条件的极大影响的。</strong>至少上个世纪创作的优秀文艺作品，从《大闹天宫》到春晚的各种语言类节目，都是在贫困的物质条件中出来的；反而到了今天，物质条件富足，却很少能再出很优秀的作品了，今年春晚的语言类节目真的是车祸现场一样。。。</p><p>说来说去，学会使用相机之后，这个铁盒子就不再是限制创作的瓶颈了，铁盒子后面的脑袋才是。现在大概是一周年，<strong>希望未来的日子里，陈小峰的小脑袋能够越来越利索，读书看报，思考实操，心灵越来越有真心话说，然后通过拍照的形式，把最坦诚的心里话，说出来给陈小峰忠实的粉丝们听！</strong></p><p>感谢能看到这里的小伙伴！能看到这里真的是真爱呢。感谢陈小峰的粉丝们能够持续关注动态，陈小峰会继续给大家分享各种有趣的东西和想法的！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>回乡见闻</title>
+      <link href="2018/03/%E5%9B%9E%E4%B9%A1%E8%A7%81%E9%97%BB/"/>
+      <url>2018/03/%E5%9B%9E%E4%B9%A1%E8%A7%81%E9%97%BB/</url>
+      
+        <content type="html"><![CDATA[<p>自从陈小峰去香港读书之后，最开始两年的春节我都没有回家，今年回家过春节的所见所闻，稍微有点让我不知所措。有些东西是这几年一直看到没有来得及写出来的，有些东西是真的猝不及防地就出现了。</p><p><img src="/uploads/2018/jiaxing.jpg" alt="嘉兴全图" title="嘉兴全图"></p><span id="more"></span><h2 id="神秘的注视目光"><a href="#神秘的注视目光" class="headerlink" title="神秘的注视目光"></a>神秘的注视目光</h2><p>在嘉兴，在我住的小区里面，你走在路上，或者提着点东西，或者一边走一边和身边的人在说话，或者就算你什么都不做，都会吸引到迎面而来的<strong>路人异样的目光</strong>。我并不知道他们在看什么，因为我们完全不认识；我也不知道他在我身上或者我拎着的东西上找寻着什么。反正他总是这样默默地打量着你，打量着你手上的东西，打量着你身边的人，默默但是认真地听着你们说的话。这样做的多数是有点岁数的人，他们并不是很清楚这样看着别人是不礼貌的，也没有那个精力和兴致和年轻人一样沉迷手机做低头族。反正我每次出门，都会被各种神奇的目光看得很尴尬啊。</p><p>我也是很好奇他们为什么总是喜欢盯着人看，包括陌生人。在香港完全没有这样的顾虑，生活节奏快，同时大家都是忙着专注于自己的事情，多数是看手机的；也有看书的；少数还有四处看看或者发呆的；唯独没有总是在打量别人，直勾勾盯着别人看的，或者专心听别人讲电话的。<strong>不礼貌</strong>倒是其次，我要是这样被人看总是觉得<strong>隐私被人侵犯了</strong>，而且感觉自己像货架上的商品：衣服是多少钱的，长得帅不帅，鞋子上有没有“Nike”的勾。</p><p>我仔细想了几天，虽然不喜欢这样倒也越来越理解了。小城市郊区居民比较闲，同时也是所谓的<strong>“人情味”</strong>比较浓厚吧。当年还在乡下的时候，鸡犬之声相闻，晚饭随随便便端着饭碗就走到了邻居家院子里聊天，相互之间也少有什么隐私啊个人空间啊什么的。至今他们依旧习惯于能够随便串门肆意聊天的生活，他们打量你就是他们社交的一部分；遇到认识的人也一定会停下来聊两句，一如上个世纪住在乡下的时候的惯常行为。</p><p>同时，有这样习惯的多数是上了年纪的人：现在的年轻一代一定沉迷手机，出门也必汽车。留下来的中年人老年人，<strong>工作稳定；生活无忧；因为在小城市，所以也没有特别的爱好：于是就养成了散步四处都要看看的习惯，简直是天生习得的“八卦”，不然日子过得确实无聊啊。</strong>看着一路散步过来的路人，内心 OS 想必是：“哎这个小伙子挺高的嘛”、“哎她拎着的菜芯看着挺新鲜的，不知道是哪里买的”、“哇现在的小姑娘真的是越来越漂亮了”、“哟对面是我大佬的老婆的妹妹的姐夫的外甥嘛” 诸如此类的，聊以打发过年闲暇的时光。<strong>“人民日益增长的物质文化需求和落后的生产力之间的矛盾”，诚不我欺啊！</strong></p><h2 id="小城市的年轻一代"><a href="#小城市的年轻一代" class="headerlink" title="小城市的年轻一代"></a>小城市的年轻一代</h2><p>小城市里的年轻一代明显不多，怕是都往一二线城市去了，或者可能只是我没看到。反正小区门口多的是老头老太在晒太阳聊天。留在嘉兴的小年轻们，大部分都是有以下几个主要的特征：</p><ol><li>工作稳定，毕业结婚</li><li>沉迷手机电脑</li><li>无大志向，无个人爱好或特长</li><li>最好的工作是公务员和银行</li></ol><p>一是被爸妈催促着相亲，催促着就把婚结了；二是几乎所有年轻人的通病吧；三是小城市安逸的特征，也没什么可以说道的；四是父母辈的灌输和他们自己的一点亲身体验吧。总而言之，这四点对我来说有两个重大的问题：<strong>一是创造力和创造欲望消减，二是生活幸福感极低；幸福感低的原因请参见一。</strong></p><p>所以我是愈加坚定了不能回家乡的决心。回去了之后的处境我都想到了：</p><ol><li>父母四处找媒人帮我谋一个相亲对象并且一年内结婚</li><li>早早下班，无事可做，不需要几个月我也会沉迷手机电脑</li><li>打压个人兴趣爱好，同时小城市也没有什么因为爱好聚集的志同道合的玩友</li><li>父母四处找关系帮我谋一个所谓的“铁饭碗”，然后坐吃等死</li></ol><p>我想要的年轻人的最高质量的幸福来自<strong>性欲、成就欲和创造欲。</strong>给不了这些的地方，再怎么样也不能去，不然一生就陷进去了。虽然说在小城市也可以折腾出一番成就，但是概率还是太低了。年纪轻轻，就自己去大城市折腾去吧！<strong>不是一定要功成名就，折腾出自己的一个小世界挺好的。</strong></p><h2 id="家乡基础设施"><a href="#家乡基础设施" class="headerlink" title="家乡基础设施"></a>家乡基础设施</h2><p><img src="/uploads/2018/infrastructure.jpg" alt="基础设施" title="基础设施"></p><p>一个很大的猝不及防的改变是<strong>家乡的基础设施瞬间好了很多。</strong>极其宽阔的三环马路（我家在三环边上）就要通车了，连路中间绿化带的观赏树木都是特别培育的很好看的三层的松树；比较健全的社区配套设施，老年活动中心啦什么的，春节期间还有专人巡逻不让放烟花爆竹（三环内）。最近几年家乡的<strong>基础建设和商业开发</strong>也算是如火如荼：家乡的城区不仅在扩张，我家旁边的楼盘还有各种炒房团来买房（上海啊什么的比较多），而且还像模像样造了噱头十足的所谓的“国际金融广场”（虽然至今还是空空如也）。</p><p>政策上面嘉兴总是在说<strong>“和上海接轨”</strong>，虽然我极其不喜欢这个策略，也不知道上海是想把嘉兴变成卫星城还是怎么样。但是单单看嘉兴的样子：老年人口多，心态安逸，年轻人又往外走，怎么可能像上海一样充满活力嘛。。。所以那个所谓的“国际金融广场”反正是空空如也（这个噱头倒是一下抬高了房价）；商场里面还是人不多，最畅销的还是那些便宜又实用的商品而非昂贵又高端的商品。</p><p>基础设施的建设肯定是惠民利民的，但是真的不要期望基础建设好了之后，嘉兴能有怎么样的腾飞。<strong>事实是什么都不会有，因为人还是那些人，创造力还是原来那样的创造力。该有的基础建设应该有，不该有的野心不要有就可以了。</strong></p><h2 id="发展策略"><a href="#发展策略" class="headerlink" title="发展策略"></a>发展策略</h2><p>嘉兴从一开始就不是一个能够和杭州上海相媲美的城市，人口、创造力、经济，方方面面。嘉兴能够坐落在杭州上海的中间，<strong>这两个大城市能够溢出一点福利来给嘉兴就已经很不错了。</strong>就其他而言，道不同，不相为谋。</p><p>之前朋友圈很多同乡转了<strong>“嘉兴要和上海全面接轨”</strong>的消息，我的心里毫无波澜（甚至有点想吃斜西街烧麦）。对于平民百姓来说，这样的政策的实际利益好像并没有很大，倒是方便了很多炒房客，其实就是方便了无处可去的资本。我家所在的小区房价一年内已经翻倍了，旁边那个新造的高端小区房价已经 1W5 多了。一个本身创造力不高、创业又极少、工资不高、买菜去菜市场不去大超市的适合居住养老的小城市，房价这样飞涨从来都不是什么好事情，也好像没有什么意义啊。</p><p>疯狂的资本在上海的机会越来越少了，上海也发现了这件事；于是非常合时宜地，嘉兴也被拖上了这艘船。可惜啊，资本开始往嘉兴来，<strong>既不创造就业，也不带来年轻的力量</strong>，那就像有一只凶猛的怪兽冲进了一个桃花源。桃花源里每一个人都不需要这只凶猛的怪兽，因为凶猛的怪兽只可以守护边疆，不可以守护人民的幸福生活；凶猛的怪兽只保佑战场上的士兵，不保佑小城里的人民。</p><p>反正我是非常不看好这个所谓的<strong>“接轨”</strong>的。虽然基础设施能有提升，但是教育上，你觉得上海的优质教育资源会流给你？！医疗上，上海大医院的专家什么确实会来嘉兴坐诊，但是就我看来不过是把嘉兴人民当韭菜割（反正一个专家号两百块），完全没有好好用心的意思（不要问我怎么知道的）。人才方面，该怎么样还是怎么样，嘉兴是吸引不到什么年轻人才的，拿钱堆都不一定有用。尴尬。</p><p><img src="/uploads/2018/shaomai.jpg" alt="斜西街烧麦" title="斜西街烧麦"></p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>以上只是我的小小回乡见闻和感悟。毕竟很多年没有在家好好了解一下情况了，可能很多观点都是错误的偏激的，望大家体谅。总而言之，希望家乡可以蓬勃发展，人民生活幸福就可以了！<strong>“兴，百姓苦；亡，百姓苦”</strong>，所以百姓的福祉永远是一个城市发展的首要任务吧！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>照片展览</title>
+      <link href="2017/09/%E7%85%A7%E7%89%87%E5%B1%95%E8%A7%88/"/>
+      <url>2017/09/%E7%85%A7%E7%89%87%E5%B1%95%E8%A7%88/</url>
+      
+        <content type="html"><![CDATA[<p>陈小峰的照片展览！挑选了 12 张陈小峰拍的照片，post 出来给大家看看。</p><span id="more"></span><p><img src="/uploads/something/sunrise.jpg" alt="sunrise" title="1. Get up early one day to catch the flight, and lucky enough to have this sunrise right out of my window."></p><p><img src="/uploads/something/cherrybee.jpg" alt="cherryandbee" title="2. Early spring, one bee is doing its job on a newly blossomed cherry."></p><p><img src="/uploads/something/diy.jpg" alt="diy" title="3. Break down my obselete cellphone and DIY it to be like this."></p><p><img src="/uploads/something/bird.jpg" alt="bird" title="4. One bird resting on top of the kapok tree."></p><p><img src="/uploads/something/bedfordgarden.jpg" alt="bedfordgarden" title="5. Bedford Garden, a community in Hong Kong."></p><p><img src="/uploads/something/sunset.jpg" alt="sunset" title="6. Sunset at Wu Kai Sha Beach."></p><p><img src="/uploads/something/cargoship.jpg" alt="cargoship" title="7. One cargoship leaving, one arriving, and one fishing boat."></p><p><img src="/uploads/something/nightscape.jpg" alt="nightscape" title="8. Nightscape of Victoria Harbour, Hong Kong."></p><p><img src="/uploads/something/lotus.jpg" alt="lotus" title="9. Lotus in Summer Palace, Beijing."></p><p><img src="/uploads/something/choihung.jpg" alt="choihung" title="10. Choi Hung Estate, one of the oldest public housing estates in Hong Kong."></p><p><img src="/uploads/something/waterfall.jpg" alt="waterfall" title="11. Near HKUST there is one mountain with plenty of springs in it, and this is the most magnificent one."></p><p><img src="/uploads/something/crowded.jpg" alt="crowded" title="12. Several public housing estates crowded together to have this view."></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 摄影 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hong Kong </tag>
+            
+            <tag> Photography </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>为什么我长得这么黑</title>
+      <link href="2017/05/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E9%95%BF%E5%BE%97%E8%BF%99%E4%B9%88%E9%BB%91/"/>
+      <url>2017/05/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E9%95%BF%E5%BE%97%E8%BF%99%E4%B9%88%E9%BB%91/</url>
+      
+        <content type="html"><![CDATA[<p>从我记事以来，我就长得比较黑。</p><p>也不知道是不是遗传的原因，反正我爸爸和我爷爷都是偏黑一点，都是辛勤劳动者的本色。但是看小时候的照片，我也是白白静静美美哒一孩子，结果到了小学左右皮肤好像瞬间黑了一个度，不知道是不是因为那个埋藏已久的基因突然开始转录了。</p><span id="more"></span><p>小时候住在乡下，就是那种家左边是竹林（一小片）右边是农田（种水稻西瓜油菜花）；前面是池塘（池塘里面有龙虾）后面是高地（种桑树，季节到了桑果随便吃，所以直到现在看到超市里大几十块一小盒的桑果我都是一脸嫌弃）。那时候没有网络没有手机没有 ipad，每天早上都是听着五点半广播里准时播放的“五星红旗迎风飘扬，胜利歌声多么嘹亮”起来的（是不是又红又专？！）。所以每一年的暑假，我都喜欢出去浪，更何况在村子里，随处都是好玩的好看的，还会跟着季节变换花样，惊喜不断。</p><p>不过虽然爸爸妈妈都出去工作了，我爷爷在家，总是吃过午饭非要逼着我去午睡。每次我都是乖乖地躺下，闭着眼睛却把耳朵竖得老高，等爷爷的鼾声一起来，我就开心地蹑手蹑脚下了床，至今都记得成功地轻手轻脚移到几米之外的门口，走出门口那一刹那的狂喜感。</p><p>夏季下午两点是一天最热的时候，家门口的水泥场地面温度真的可以到五六十度，简直可以烤熟鸡蛋。就是在这种情况下，我光着脚丫子在水泥场上面跑来跑去，有时也跟着小伙伴们一起“视察”村里的田地情况，完全不怕自己被烤熟，简直应该让村长给我们发工资；反正就算被烤熟了也不愿意回去睡午觉，睡午觉对我们这样的精力旺盛的孩子来说简直就是犯罪。</p><p>就是酱紫，一个暑假下来，几乎每天顶着夏季下午两点的大太阳瞎玩瞎跑，让现在爱美的妹子感受一下，一定是避之惟恐不及的；毕竟一白遮百丑，一黑毁所有嘛（还好我是汉纸）。就是这样，也算自己作死，皮肤就这样活生生被晒黑了。</p><p>但是那时候只知道玩，根本不在意什么黑啊白啊什么的；反倒是这样玩久了，结果居然爱上了这样的沐浴阳光的感觉，不管是冬日暖阳还是夏日骄阳。后来我还美其名曰“光合作用”。倒不是说我真的可以光合作用，我也没有叶绿素，充其量只算是有“皮黑素”；这是说当有阳光照到我身上的时候，我的心情总是会变好。一直到初中高中住校的时候，下课也总喜欢在走廊上晒晒太阳看看远方，进行“光合作用”。</p><p>我倒是很感谢命运给了我这样一个奇葩的性情，让我从一样免费的东西里面能找到宝贵的资源，别人可都是想买都买不来呢。虽然现在长期窝在实验室里面对着电脑，不过还好，童年的阳光早就刻进了我的记忆里面。走在路上沐浴着阳光的时候，我的脑子里面空无一物；我耳边聒噪的知了在叫，清凉的风拂过竹林发出沙沙声，甚至还感觉到小时候家门口那棵大水杉树的树荫突然出现在我头顶。等到推开门，香港丧心病狂的室内空调的冷气迎面一巴掌，夹杂着吵闹的人声和成年人的味道，一下子把我脑子涮清醒，三秒钟后便又是一条苦逼的单身博士狗。</p><p><img src="/uploads/2017/dodge.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>雄安新区 2017，大明王朝 1566</title>
+      <link href="2017/04/xiongan/"/>
+      <url>2017/04/xiongan/</url>
+      
+        <content type="html"><![CDATA[<p>小伙伴们大家好，不好意思陈小峰又拖延又懒，导致公众号很久没有好好更新一下了。这次终于有了好久不见的一次更新了，希望是个好的开始。</p><h2 id="雄安新区-2017"><a href="#雄安新区-2017" class="headerlink" title="雄安新区 2017"></a>雄安新区 2017</h2><p>不久前，国家出台** “雄安新区” <strong>的政策，谓之</strong> “千年大计，国家大事”<strong>，这是 “把握时代大趋势的历史性举措；设立雄安新区是以习近平同志为核心的党中央深入推进京津冀协同发展作出的重大选择”。<br>37 年前，位于华南的深圳经济特区，从昔日小渔村起步，发展成繁华都市，引领着珠三角经济增长极崛起，成为中国开启国门走向开放的重要标志。25 年前，位于华东的上海浦东新区，从一片旷野地蝶变成汇聚财富的金融中心，辐射带动长三角跻身世界六大城市群，成为中国改革开放再出发的新象征。今天，</strong>雄安<strong>新区拔地而起，和</strong>北京<strong>、</strong>天津**成三角之势。这小小的三角形里面，有着偌大的乾坤呢。<br><img src="/uploads/2017/xiongan.jpg" alt="雄安新区" title="雄安新区"></p><span id="more"></span><p>然而今天的主题不是雄安新区，是得知雄安新区设立之后，<strong>觉都不睡连夜驾车前往雄安新区买房的炒房团</strong>。雄安新区横空出世，如同** “范进中举” **一样，掀起了一股疯疯癫癫的浪潮。本地的农民，一脸懵逼不知所以；利益的追求者，穷凶极恶如狼似虎。一个政府天降的政策，把众生百态照得清清楚楚，好像在现场看话剧。</p><h2 id="大明王朝-1566"><a href="#大明王朝-1566" class="headerlink" title="大明王朝 1566"></a>大明王朝 1566</h2><p>扯开一点，最近强行把<strong>《大明王朝 1566》</strong>刷完了，确实是难得的好片。只是有一个问题一直环绕着我，就是这个嘉靖皇帝怎么辣么蠢，任用宦官，严氏父子贪污腐败，最后加上自己迷恋道教长生不老，几十年不上朝，整天在修道这种问题上跟个三岁孩子一样，幼稚又容易控制（有一个小细节，嘉靖帝不说话，特喜欢敲一个铜的不知道什么东西来表示 “准奏”，像极了第一次拥有一把玩具手枪的孩子，干什么都要用手枪）。假设要是这个嘉靖皇帝脑子清醒，可能就完全没有了这部电视剧，然而也只是想想啦。<br>不过第二个问题就是，仔细想想，虽然现在我们回看历史，觉得当时的人怎么辣么傻逼，这么点问题都想不通，这样的东西都相信。可是毕竟我们在 500 年后回看历史，<strong>时代总是不断向前发展的</strong>，那个年代的时代局限性可能就这样，所以这样想来那个优越感，不是我们自己的<strong>智商优越感</strong>，只是我们所处时代的<strong>时代优越感</strong>。</p><h2 id="回正题"><a href="#回正题" class="headerlink" title="回正题"></a>回正题</h2><p>雄安新区一建立，<strong>股票涨停，房价暴涨；炒房团蜂拥而至，观光客合影留念，搞得快要全国跟着一起高潮了</strong>。我真是不明白，大部分人既和雄安新区没有任何的瓜葛，也没有关心国家政治的热情，怎么就那么为了一个和自己八杆子打不着的事情激动成这个样子。<br>至于英勇的炒房团，我真的是不敢恭维。从一开始国家圈定这个地区，一部分原因可能就是看好这片地区落后，开发度低，所以<strong>拆迁起来便宜，规划起来方便</strong>。现在你这个炒房团啥都不管，直接就往国家枪口上撞，妄图在国家政策里面大赚一笔，胆子确实是够大的。我是特别期待接下来看到喜闻乐见的剧情的（虽然根本不会有，国家对人民还是很好的）。<br>真的是想不通这些炒房团到底是为了什么。。。<strong>“广厦万间，夜眠七尺；良田千顷，日仅三餐”</strong>。有一套房可以住着，加上一套房当作投资，我觉得就差不多了啊。手上握着几十套房，每天晚上你也就睡一张床；账户存折几千万钱，一顿你最多也就吃一斤。现在从社会各方面，我也是越来越理解了什么叫** “人民日益增长的物质文化需求和落后的社会生产力之间的矛盾”<strong>，引以为鉴，注意自身，</strong>善己身为一切之本**。</p><h2 id="价值"><a href="#价值" class="headerlink" title="价值"></a>价值</h2><p>自古以来，<strong>唯有创造价值的，才可以载入史册</strong>。政府发布的政策，将价值赋予给了雄安新区，这就是创造了价值，有载入史册的资格；炒房团靠着倒买倒卖房产，创造的人民币不算价值，他们也没有创造价值，甚至连房子都不是他们造的，自然是一点价值也没有创造。其余衮衮诸公，皆不足道也。<br>作为一个提醒给自己，<strong>创造价值是人生的意义</strong>。人类能够发展到今天这一步，全靠的是历史上各种人物创造的价值的慢慢积累；<strong>如果人类要继续进步，那就必须有人继续创造价值</strong>，让后人踩在前人的肩膀上。炒房团的行为我们不能禁止，但是必须要有其他人来创造价值，<strong>每个时代都有自己的历史任务</strong>。如果 21 世纪大家全都是炒房团，大家都不去创造价值而是去倒买倒卖别人创造的价值，那人类也差不多该把地球让给其他生物了。<br>21 世纪是个神奇的时代，各种乱七八糟奇奇怪怪的事情特别多。讷，多就多吧，<strong>该完成的历史任务还是需要有人去完成的</strong>。只要历史任务完成了，足够的价值创造了，其他某些行业乱成鸟样都没大问题，乱成鸟样了它们会自己原地爆炸，然后让新人收编重组。500 年后，人类还是在继续发展，历史会记录这一段故事；那些荒诞又奇怪的故事呢，可能就变成了电视剧，给那时候的人们作为茶余饭后的谈资。那时候的人们看《雄安新区 2017》，就好像我现在看《大明王朝 1566》：这么简单的贪污腐败的问题，你怎么那么蠢？这么骗人的长生不老的道教，你怎么那么幼稚？为什么？因为时代优越感嘛。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>不过你要是问我有没有解决办法，当然是有啦。最简单的办法，<strong>“抗外患可以省内忧”</strong>，只可惜实施不了（1930 年代有国家实施过，大家都知道这个历史）。其他的办法呢，国家领导才知道，我的智商是不够了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>彩虹邨：红橙黄绿青蓝紫，柴米油盐酱醋茶</title>
+      <link href="2017/03/choihung/"/>
+      <url>2017/03/choihung/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/uploads/2017/choihung.jpg" alt="彩虹邨" title="彩虹邨"></p><p><strong>彩虹邨</strong>是香港最早期兴建之公共屋邨之一，为了配合这个名字，彩虹邨的外墙被刷成了<strong>彩虹色</strong>，附近的地铁站也叫彩虹。包括邨内的街道，各自命名为<br><strong>紅</strong>梅路<br><strong>橙</strong>花路<br><strong>黃</strong>菊路<br><strong>綠</strong>柳路<br><strong>青</strong>楊路<br><strong>藍</strong>鐘路<br><strong>紫</strong>葳路</p><span id="more"></span><p>彩虹邨也是<strong>摄影界的网红</strong>，那天下午我去的时候，全都是摆拍的妹子。。。嗯</p><p>有一位摄影师的彩虹邨的照片被评为** Sony 世界摄影大赛香港赛区冠军**，拍得比我好，大家可以去搜索看一下。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 摄影 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> HKUST </tag>
+            
+            <tag> Hong Kong </tag>
+            
+            <tag> 摄影 </tag>
+            
+            <tag> Photography </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>自私的一代</title>
+      <link href="2017/01/zisi/"/>
+      <url>2017/01/zisi/</url>
+      
+        <content type="html"><![CDATA[<p><strong>“自私的一代”</strong>这个词是上次我和我妈聊天的时候她给我们这代年轻人的评价。她觉得我们这一代的年轻人不像她们年轻的时候那样，我们这一代年轻人<strong>“自私”</strong>，总是更多地想着自己，比如想着自己以后毕业了要去哪里哪里工作，却不考虑父母家人的反对意见；比如想着自己要说走就走地旅行，也不管这钱这时间是父母在帮你承担还是什么；比如只爱着自己不爱别人，没有为别人着想的集体精神。</p><span id="more"></span><h2 id="故事一"><a href="#故事一" class="headerlink" title="故事一"></a>故事一</h2><p>我妈为了佐证她的观点，她给我讲了一个身边的故事。<br>她认识的一个朋友家，父母两个都是教师，工作稳定收入也挺可观的。他们的儿子，就叫他<strong>小明</strong>吧，在我过去读过的高中上高中，上的是类似那种“国际班”，高中毕业了有机会可以去国外读大学（多是欧洲，德国法国英国什么的）。<br>然后小明高中毕业义无反顾地选择去了英国，具体哪个学校忘了，应该是英国很好的大学，但是花费很大（自费留学英国，你懂的）。父母都觉得资助不起，都劝他在国内读个 985 本科就算了，毕业了也算国内挺好的了，但是小明一定要去英国，最后也还是去了，从此小明父母的生活从<strong>“小康”</strong>直接跌倒了<strong>“温饱”</strong>，为了资助小明的大学费用，两个人都是勒紧了腰带省吃俭用，生活水平直线下降。<br>小明的爷爷当然也是一直都看着事情发展的，看着自己的儿子（小明的爸爸）为了高额的学费这么辛苦，总也是有点怨气的，大意就是太冒险了，全家几乎倾尽全力资助小明去英国，但是他在英国能怎么样呢还没有个定数，这边小明的父母早已经累死累活了，不值得。</p><h2 id="我妈说"><a href="#我妈说" class="headerlink" title="我妈说"></a>我妈说</h2><p>讲完了这个故事，我妈就开始叨叨了，说你们这一代年轻人怎么那么自私，为了自己能够出国读个书，把父母压榨成这个样子。<br>我给她解释其中缘由的时候，她倒是早就了然于心：留学读书是<strong>需要前期的大量投资</strong>的，而且结果怎么样是有风险的，<strong>但是</strong>只要好好学习有所成绩，这些投资轻轻松松都能赚回来的；小明要从我们这个小镇上爬到一个更高阶级的地方，是<strong>必须要牺牲的</strong>，这个牺牲就是小明这一代和小明父母这一代有一个<strong>巨大的阶级断层</strong>，你无法想象和忍受我的生活我无法想象和忍受你的生活。<br>可是我妈还是觉得<strong>“自私”</strong>，她就是非常保守，什么事情都求稳，像这样的出国留学这样的投资风险太大，她根本不可能会愿意去做。</p><h2 id="故事二"><a href="#故事二" class="headerlink" title="故事二"></a>故事二</h2><p>接着还有第二个故事，主人公我们就叫<strong>小红</strong>吧。小红家里有钱，所以毫无问题地被爸妈送到国外去了。结果现在人家<strong>“野”</strong>了，<strong>“浪”</strong>了，喜欢西班牙，以后想去西班牙工作和生活。这一下急坏了全家人，这唯一一颗掌上明珠怎么可以去那么远的地方，更不用说最后找了一个外国女婿，这样都不能在父母身边陪着，这怎么行，所以全家人都极力反对。</p><h2 id="然后我妈又说"><a href="#然后我妈又说" class="headerlink" title="然后我妈又说"></a>然后我妈又说</h2><p>然后我妈就又开始叨叨了呢，说这个小红怎么那么自私那么不懂事，父母慢慢变老，非常需要孩子（尤其是独生子女）留在身边照顾一下呢，怎么可以不管父母去到那么远的地方呢？她把这个贴个标签叫做<strong>“自私”</strong>，因为小红做决定的时候没有考虑到父母需要她留在他们身边。<br>然后她又顺便给我洗了一下脑，说你以后毕业了可一定要回到我们身边哦，我们老了，身体都不好了，你要是呆香港或者去国外，那我们怎么办呢？她期望着这样给我压力可以尽量留住我，而且好像特别在意地每次都给我旁敲侧击。</p><h2 id="说来说去"><a href="#说来说去" class="headerlink" title="说来说去"></a>说来说去</h2><p>说来说去其实我也很懵逼，我也不知道正确的结论到底是个什么，不过我确定这种问题一定是见仁见智的。我妈的重点倒是很明确，你只要做决定的时候（比如找工作、找妹纸）没有想着父母，这就是<strong>自私</strong>。这样说来，她也是<strong>自私</strong>的一个，她自私地强行把自己嵌入到本不应该参与的子女的一些决策中去，以求一个对自己好的决策。<br>但是现在这个时代是<strong>个性爆棚</strong>的时候，哪个年轻人没个自己的公众号，没个自己的网站，没个个性鲜明的生活配置（手机啊，日常爱好啊，遣词造句啊，各种）。所以还像上个世纪一样，要求做决定要考虑父母考虑集体，只怕是会被年轻人说成“迂腐”或者“落伍”。<br>另外，独生子女政策也真的是给我们这一代造成了很大的养老压力，父母期望<strong>我们在身边照顾</strong>和<strong>我们自己想要的</strong>很大概率会起冲突。所以，我妈把这个定义成了<strong>“自私”</strong>，我把这个定义成了<strong>“追求自己的生活”</strong>，不过是同一个矛盾从不同的视角评定的而已。</p><h2 id="寻求讨论"><a href="#寻求讨论" class="headerlink" title="寻求讨论"></a>寻求讨论</h2><p>写这么一篇发牢骚的破文章，其实还是想和大家有一个讨论，到底大家觉得上面的两个故事是自私还是可以接受？或者亲爱的读者你要是有故事，也可以<strong>在评论区分享出来</strong>；有什么见解都可以在评论区留言。希望能和大家有一个讨论。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>TA Observation</title>
+      <link href="2016/11/TA/"/>
+      <url>2016/11/TA/</url>
+      
+        <content type="html"><![CDATA[<p>During Fall 2016 semester, I served my compulsory <strong>TA (Teaching Assistant) duty</strong>. Recently the TAC (TA Coordinator) and an observer, Miss Elaine from <a href="http://cei.ust.hk/">CEI</a> (Center for Education Innovation), observed one of my tutorial given to UG students of <a href="http://www.ece.ust.hk/public/programs/ug_course.html">ELEC 3400</a> (Introduction to Integrated Circuits and Systems), and gave me some advice about that. There is a <strong>pre-observation</strong>, talking briefly what I’m gonna teach and what kind of skills I’m gonna use; and also a <strong>post-observation</strong>, discussing the feelings and exchanging feedback.</p><span id="more"></span><p>Miss Elaine is actually great. I met her one year ago in my <a href="http://cei.ust.hk/gta-training-program">TA training session</a> where she was the major lecturer, showing us how to teach, and the TA training session itself was a great success in terms of her teaching skills. She is the observer this time, and gives me really helpful advice before and after the tutorial.</p><h2 id="Pre-observation"><a href="#Pre-observation" class="headerlink" title="Pre-observation"></a>Pre-observation</h2><p>There is a pre-observation discussing about some general stuff and also talking in detail about the tutorial I’m gonna give, both content and teaching skills. It’s after the pre-observation that I realized I can do so much better than before just by indeed applying the teaching skills to my tutorial.<br>Besides, I also discuss with her some of my concerns, including my <strong>presentation skills</strong> (like gestures, humanly talk and walk-around) and <strong>teaching skills</strong> (engaging students and eliciting).</p><h2 id="Post-observation"><a href="#Post-observation" class="headerlink" title="Post-observation"></a>Post-observation</h2><p>After the tutorial, we talk again about subjective feelings and objective facts. Indeed, Miss Elaine gives me a lot of advice which turns out to be very helpful yet difficult to implement. Anyway, the observation gives me really something to think about and something I can do during the rest of this semester.</p><h3 id="Bloom’s-Taxonomy"><a href="#Bloom’s-Taxonomy" class="headerlink" title="Bloom’s Taxonomy"></a>Bloom’s Taxonomy</h3><p><img src="/uploads/2016/BloomTaxonomy.jpg" alt="Bloom&#39;s Taxonomy" title="Bloom&#39;s Taxonomy: remember, understand, apply, analyze, evaluate and create"><br><a href="https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/"><strong>Bloom’s Taxonomy</strong></a> is a framework for categorizing educational goals. The revised Taxonomy contains different levels shown below.</p><ul><li>Remember<ul><li>Recognizing</li><li>Recalling</li></ul></li><li>Understand<ul><li>Interpreting</li><li>Exemplifying</li><li>Classifying</li><li>Summarizing</li><li>Inferring</li><li>Comparing</li><li>Explaining</li></ul></li><li>Apply<ul><li>Executing</li><li>Implementing</li></ul></li><li>Analyze<ul><li>Differentiating</li><li>Organizing</li><li>Attributing</li></ul></li><li>Evaluate<ul><li>Checking</li><li>Critiquing</li></ul></li><li>Create<ul><li>Generating</li><li>Planning</li><li>Producing</li></ul></li></ul><p><strong>Objectives (learning goals)</strong> are really significant to teaching and learning. Thus, during tutorial, when you ask questions, you may think about what is the objective, what is expected to be mastered by the students. Also, when you ask questions, better <strong>start from lower level to higher level</strong>.</p><h3 id="Elicit"><a href="#Elicit" class="headerlink" title="Elicit"></a>Elicit</h3><p>Miss Elaine mentions a word “<strong>ELICIT</strong>”, which means to draw or bring out or forth. Just like in post-observation, she asks me a lot of questions trying to elicit me to think about some stuff: What’s in the tutorial? What’s good or bad in the tutorial? What would I do next? What’s the plan for improving?<br><strong>ELICIT</strong> can also be used to bring out what students know. It is desirable to check from time to time whether the students understand you or not. Instead of keeping telling them without noticing they are already not with you, sometimes eliciting is a better way to check whether students are following you, what students know, etc.<br>In terms of the plan for further improvement, Instead of just telling me what to enhance, Miss Elaine elicits me to think about it myself. That’s a genius application of elicit, making this otherwise seemingly formalistic and useless improvement plan really work for her and me.</p><h3 id="Engage-Students"><a href="#Engage-Students" class="headerlink" title="Engage Students"></a>Engage Students</h3><p>Students’ involvement really means something. Better engagement makes the lecture more fruitful in terms of knowledge delivering. Involving students can be time-consuming and less efficient, but when employed properly, it makes the lecture more interesting and human.<br>During the tutorial, student involvement really creates an engaging atmosphere all around the classroom. This several minutes students are really focusing and thinking about the question raised.</p><h2 id="Further-Plan"><a href="#Further-Plan" class="headerlink" title="Further Plan"></a>Further Plan</h2><p>We discuss about some tips on further improvement plan. As stated, instead of telling me what to do, Miss Elaine asks me what you want to do, leading me to really think about it and give a plan myself.</p><h3 id="Better-presentation-skills"><a href="#Better-presentation-skills" class="headerlink" title="Better presentation skills."></a>Better presentation skills.</h3><ol><li>More gestures, less laser pen.</li><li>Humanly, naturally walk around, making people comfortable.</li><li>Talk humanly, with proper punctuation and emphasis.</li></ol><h3 id="Better-student-engagement"><a href="#Better-student-engagement" class="headerlink" title="Better student engagement"></a>Better student engagement</h3><ol><li>Actively bring individuals together for discussion.</li><li>From time to time involve students, checking whether they are following.</li></ol><h3 id="Better-eliciting-slides"><a href="#Better-eliciting-slides" class="headerlink" title="Better eliciting slides"></a>Better eliciting slides</h3><ol><li>For a comparison page, instead of giving the results and explaining, tell students to fill in the comparison table and tell me why.</li><li>For a summary page, tell students to give me the items, help them reflect through the content.</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> essay </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> HKUST </tag>
+            
+            <tag> Hong Kong </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="2016/09/hello-world/"/>
+      <url>2016/09/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><span id="more"></span><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> default </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> default </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

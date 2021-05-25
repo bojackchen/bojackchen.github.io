@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta name="google-site-verification" content="3cQ6JQRcEpaIMnfTD54kpHHV7BepnB73aiEJj4AsfiQ">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;bojackchen.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="1956 年 12 月 10 日，瑞典国王及王后早早地起床了，因为今天下午有一件重要的事情等待着他们。为了迎接这一盛典，他们需要花相当多的时间整束妆容，然后穿上隆重的礼服。按照惯例，今天下午他们需要出席诺贝尔奖颁发仪式，将诺贝尔奖授予今年的获得者们。今年的诺贝尔物理学奖授予了三个美国人：威廉·肖克利（William Shockley）、约翰·巴丁（John Bardeen）以及沃尔特·布拉顿（Wa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="世界芯片简史（上）：仙童半导体与硅谷">
+<meta property="og:url" content="https://bojackchen.github.io/2019/08/%E4%B8%96%E7%95%8C%E8%8A%AF%E7%89%87%E7%AE%80%E5%8F%B2%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E4%BB%99%E7%AB%A5%E5%8D%8A%E5%AF%BC%E4%BD%93%E4%B8%8E%E7%A1%85%E8%B0%B7/index.html">
+<meta property="og:site_name" content="陈小峰">
+<meta property="og:description" content="1956 年 12 月 10 日，瑞典国王及王后早早地起床了，因为今天下午有一件重要的事情等待着他们。为了迎接这一盛典，他们需要花相当多的时间整束妆容，然后穿上隆重的礼服。按照惯例，今天下午他们需要出席诺贝尔奖颁发仪式，将诺贝尔奖授予今年的获得者们。今年的诺贝尔物理学奖授予了三个美国人：威廉·肖克利（William Shockley）、约翰·巴丁（John Bardeen）以及沃尔特·布拉顿（Wa">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/%E8%AF%BA%E8%B4%9D%E5%B0%94%E5%A5%96.jpg">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/%E7%9C%9F%E7%A9%BA%E7%AE%A1.jpg">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/%E6%99%B6%E4%BD%93%E7%AE%A1.png">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/%E7%9C%9F%E7%A9%BA%E7%AE%A1%E6%97%B6%E9%92%9F.jpg">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/%E7%A1%85%E8%B0%B7%E5%9C%B0%E7%90%86.png">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/%E9%BB%9B%E5%A8%9C%E6%9C%A8%E5%B1%8B.jpg">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/%E4%BB%99%E7%AB%A5%E5%8D%8A%E5%AF%BC%E4%BD%93.jpg">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/%E9%94%97%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF.jpg">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/%E7%A1%85%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF.jpg">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B.png">
+<meta property="og:image" content="https://bojackchen.github.io/uploads/2019/%E7%A1%85%E8%B0%B7%E7%A7%91%E6%8A%80%E5%85%AC%E5%8F%B8.jpg">
+<meta property="article:published_time" content="2019-08-24T15:23:23.000Z">
+<meta property="article:modified_time" content="2021-05-25T07:35:11.085Z">
+<meta property="article:author" content="陈小峰">
+<meta property="article:tag" content="随笔">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bojackchen.github.io/uploads/2019/%E8%AF%BA%E8%B4%9D%E5%B0%94%E5%A5%96.jpg">
+
+
+<link rel="canonical" href="https://bojackchen.github.io/2019/08/%E4%B8%96%E7%95%8C%E8%8A%AF%E7%89%87%E7%AE%80%E5%8F%B2%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E4%BB%99%E7%AB%A5%E5%8D%8A%E5%AF%BC%E4%BD%93%E4%B8%8E%E7%A1%85%E8%B0%B7/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;bojackchen.github.io&#x2F;2019&#x2F;08&#x2F;%E4%B8%96%E7%95%8C%E8%8A%AF%E7%89%87%E7%AE%80%E5%8F%B2%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E4%BB%99%E7%AB%A5%E5%8D%8A%E5%AF%BC%E4%BD%93%E4%B8%8E%E7%A1%85%E8%B0%B7&#x2F;&quot;,&quot;path&quot;:&quot;2019&#x2F;08&#x2F;世界芯片简史（上）：仙童半导体与硅谷&#x2F;&quot;,&quot;title&quot;:&quot;世界芯片简史（上）：仙童半导体与硅谷&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>世界芯片简史（上）：仙童半导体与硅谷 | 陈小峰</title><script src="/js/config.js"></script>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107307402-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{&quot;tracking_id&quot;:&quot;UA-107307402-1&quot;,&quot;only_pageview&quot;:false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">陈小峰</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Bojack F. CHEN</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF%E5%89%8D%E4%BC%A0"><span class="nav-number">1.</span> <span class="nav-text">一、集成电路前传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BB%99%E7%AB%A5%E5%8D%8A%E5%AF%BC%E4%BD%93"><span class="nav-number">2.</span> <span class="nav-text">二、仙童半导体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF%E6%AD%A3%E4%BC%A0"><span class="nav-number">3.</span> <span class="nav-text">三、集成电路正传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%A1%85%E8%B0%B7"><span class="nav-number">4.</span> <span class="nav-text">四、硅谷</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="陈小峰"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">陈小峰</p>
+  <div class="site-description" itemprop="description">This is Bojack F. CHEN (陈 峰)'s personal website deployed on GitHub with Hexo and NexT theme.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:bojackchen@gmail.com" title="E-Mail → mailto:bojackchen@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://bojackchen.github.io/about/wechat" title="Wechat → https:&#x2F;&#x2F;bojackchen.github.io&#x2F;about&#x2F;wechat"><i class="fa fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://linkedin.com/in/bojackchen" title="LinkedIn → https:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;bojackchen" rel="noopener" target="_blank"><i class="fa fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://zhihu.com/people/bojackchen" title="Zhihu → https:&#x2F;&#x2F;zhihu.com&#x2F;people&#x2F;bojackchen" rel="noopener" target="_blank"><i class="fa fa-question-circle fa-fw"></i>Zhihu</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/bojackchen" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bojackchen.github.io/2019/08/%E4%B8%96%E7%95%8C%E8%8A%AF%E7%89%87%E7%AE%80%E5%8F%B2%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E4%BB%99%E7%AB%A5%E5%8D%8A%E5%AF%BC%E4%BD%93%E4%B8%8E%E7%A1%85%E8%B0%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="陈小峰">
+      <meta itemprop="description" content="This is Bojack F. CHEN (陈 峰)'s personal website deployed on GitHub with Hexo and NexT theme.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈小峰">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          世界芯片简史（上）：仙童半导体与硅谷
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-24 23:23:23" itemprop="dateCreated datePublished" datetime="2019-08-24T23:23:23+08:00">2019-08-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-25 15:35:11" itemprop="dateModified" datetime="2021-05-25T15:35:11+08:00">2021-05-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>1956 年 12 月 10 日，瑞典国王及王后早早地起床了，因为今天下午有一件重要的事情等待着他们。为了迎接这一盛典，他们需要花相当多的时间整束妆容，然后穿上隆重的礼服。按照惯例，今天下午他们需要出席诺贝尔奖颁发仪式，将诺贝尔奖授予今年的获得者们。今年的诺贝尔物理学奖授予了三个美国人：<strong>威廉·肖克利（William Shockley）、约翰·巴丁（John Bardeen）以及沃尔特·布拉顿（Walter Brattain）</strong>，『for their researches on semiconductors and their discovery of the transistor effect』。</p>
+<p><img src="/uploads/2019/%E8%AF%BA%E8%B4%9D%E5%B0%94%E5%A5%96.jpg" alt="诺贝尔物理学奖三人组"></p>
+<span id="more"></span>
+
+<h2 id="一、集成电路前传"><a href="#一、集成电路前传" class="headerlink" title="一、集成电路前传"></a>一、集成电路前传</h2><p>20 世纪 20 年代，当欧洲正陷在一战的泥沼中的时候，美国却大发战争财，成为了一战中最大的受益方。当时的美国社会因为暴富进而声色犬马夜夜笙歌的场景可以从《了不起的盖兹比》这部电影中窥见一二。与此同时，1925 年，刚成立的贝尔实验室开始致力于基础理论的研究。这之后的二十年里，上个世纪物理学的理论发现慢慢被应用到实际世界中去，比如爱迪生发现的『爱迪生效应』被继续研究拓展，工程师们生产出了真正有实际应用价值的<strong>电子管</strong>（有的地方也叫<strong>真空管</strong>，因为包裹它的玻璃管的内部必须要抽真空）；再比如远距离电视传输和电子计算机。1946 年 2 月 14 日，世界第一台通用计算机埃尼阿克（ENIAC）诞生，使用的是电子管。因此，它占地面积约 170 平方米，重 30 英吨，耗电 150 千瓦，装有大约 18000 只电子管。最要命的是，电子管特别娇气，平均每隔 15 分钟就要烧坏一只，科学家们不得不满头大汗地不停更换。</p>
+<p><img src="/uploads/2019/%E7%9C%9F%E7%A9%BA%E7%AE%A1.jpg" alt="真空管长这样，像不像热水瓶胆？"></p>
+<p>1947 年，约翰·巴丁和沃尔特·布拉顿在贝尔实验室共同发明了<strong>点接触晶体管</strong>；随后，在 1948 年，威廉·肖克利发明了<strong>结型晶体管</strong>，之后结型晶体管也成为真正实用的晶体管。这三个人的发明真正开创了繁荣至今的现代半导体产业。相比于之前的电子管，晶体管的可靠性和寿命大大延长，体积和功耗也大大降低，很自然在之后的大约三十年的时间内是制造分立元件电路和集成电路的不二选择。</p>
+<p><img src="/uploads/2019/%E6%99%B6%E4%BD%93%E7%AE%A1.png" alt="点接触晶体管"></p>
+<p>时至今日，电子管这个老古董现在被一些人用来做炫酷的时钟了，还真挺炫酷的，就是不知道过多久会坏。</p>
+<p><img src="/uploads/2019/%E7%9C%9F%E7%A9%BA%E7%AE%A1%E6%97%B6%E9%92%9F.jpg" alt="辉光管（电子管的一种）做的"></p>
+<p>很快，新型的半导体行业吸引到了商业的目光。1951 年，得益于二战时期大量的美国陆军和海军的国防电子产品合同（美国参加二战后，全国工业生产被调动起来，一星期可以生产一艘轻型航母），地球物理业务公司（Geophysical Service Incorporated, GSI）整组，德州仪器（Texas Instruments, TI）诞生。1952 年，德州仪器买下了生产晶体管的专利证书，开始生产并研究晶体管，很快成功地制造出了<strong>世界上第一个商用硅材料晶体管</strong>。肖克利等三人发明的时候，晶体管是使用锗材料制作的。</p>
+<p>为什么好端端地要从锗材料换成硅材料呢？因为摩托罗拉公司用锗材料晶体管制造了车载收音机，从此美国的有车一族就可以在车上收听广播和音乐了，极其拉风，风靡一时。但是好景不长，摩托罗拉很快收到了大量用户投诉，说车载收音机在午后的阳光下暴晒了一下午之后就不工作了。后来的研究发现，<strong>锗材料的温度性能很差</strong>，收音机被午后的阳光晒热了之后就不能正常工作了。很快，1954 年，在美国的一次会议上，来自德州仪器的工程师戈登·蒂尔（Gordon Teal）上台变了个戏法：他将连在收音机上的锗晶体管扔进一桶热油，收音机机立即不工作了。然后他又拆下锗晶体管，换上自己的硅晶体管，也扔进油桶里，收音机的音乐依然继续。</p>
+<p>从此，锗材料就逐渐开始被抛弃了。</p>
+<h2 id="二、仙童半导体"><a href="#二、仙童半导体" class="headerlink" title="二、仙童半导体"></a>二、仙童半导体</h2><p>1955 年，肖克利离开了贝尔实验室，回到了自己长大的加利福尼亚州。在获得 pH 值测定法的发明人阿尔诺德·贝克曼（Arnold Beckman）的投资之后，肖克利终于如愿以偿创办了肖克利半导体实验室（Shockley Semiconductor Laboratory）。由于当时斯坦福工学院院长弗里德里克·特曼（Frederick Terman）教授的热心推荐，公司地址选在加州旧金山湾区东南部的圣克拉拉谷（Santa Clara Valley），不知道这个地方？不急，换个名字你就知道了：<strong>硅谷（Silicon Valley）</strong>。</p>
+<p><img src="/uploads/2019/%E7%A1%85%E8%B0%B7%E5%9C%B0%E7%90%86.png" alt="硅谷的地理位置"></p>
+<p>因为有着<strong>『晶体管之父』</strong>这个头衔的加成，肖克利的公司迅速招聘到了很多慕名而来的专业人才，其中八个二十几岁的极其优秀的青年特别值得一提：罗伯特·诺伊斯（Robert Noyce）、戈登·摩尔（Gordon Moore）、金·赫尔尼（Jean Hoerni）、朱利亚斯·布兰克（Julius Blank）、尤金·克莱纳（Eugene Kleiner）、杰·拉斯特（Jay Last）、谢尔顿·罗伯茨（Sheldon Roberts）以及维克多·格里尼克（Victor Grinnich）。</p>
+<p>这是前所未有的天才的集合。</p>
+<p>1956 年，也就是肖克利半导体实验室成立一年之后，肖克利和另外两个人被授予诺贝尔物理学奖，兴奋异常的他将手下的年轻科学家们带到市中心豪华的『黛娜木屋』餐馆，举行香槟早餐会。这时，大伙都沉浸在蜜糖般的喜悦之中，认为『晶体管之父』肖克利能够带领他们创造新的辉煌，改写人类的历史。</p>
+<p><img src="/uploads/2019/%E9%BB%9B%E5%A8%9C%E6%9C%A8%E5%B1%8B.jpg" alt="传说中的『黛娜木屋』餐馆"></p>
+<p>然而，好景不长。</p>
+<p>随着时间的推移，八个年轻人才发现，顶着无上光环的肖克利根本不是一个好领导。他对管理技巧一窍不通，但是偏偏十分自以为是，傲慢刻薄。1957 年 9 月 18 日，这八个年轻人一起向肖克利提交了辞呈，然后被肖克利骂成是<strong>『八叛徒（traitorous eight）』</strong>，后来这件事成为了硅谷历史上的一段佳话。这八个人在仙童照相机与仪器公司（Fairchild Camera &amp; Instrument ）的资助下，创办了子公司<strong>仙童半导体公司</strong>（Fairchild Semiconductor）。</p>
+<p><img src="/uploads/2019/%E4%BB%99%E7%AB%A5%E5%8D%8A%E5%AF%BC%E4%BD%93.jpg" alt="仙童半导体的 logo"></p>
+<p>1958 年 1 月，蓝色巨人 IBM 给了他们第一张订单，订购 100 个硅晶体管，用于该公司电脑的存储器。到这年年底，公司已经拥有 50 万销售额和 100 多名员工，依靠技术创新的优势，仙童半导体成长极快。</p>
+<p>与此同时，德州仪器也没有闲着。</p>
+<h2 id="三、集成电路正传"><a href="#三、集成电路正传" class="headerlink" title="三、集成电路正传"></a>三、集成电路正传</h2><p>德州仪器公司的工厂里面每天都是『热闹非凡』的。这里充斥着大量的低收入女工，和现在的富士康女工一模一样。她们的主要工作就是穿着闷热的防护服，一边看着显微镜，一边发着牢骚，一边把细小的晶体管焊接到一起去。这几年计算机硬件发展得越来越快，系统也越来越复杂，单个晶体管的尺寸也比较小，所以焊接女工们的牢骚也越来越多。</p>
+<p>1958 年，34 岁的工程师杰克·基尔比（Jack Kilby）加入了公司。一个炎热的夏天，德州仪器公司的员工都出去休假了，但是按照惯例，作为新员工的基尔比因为没有攒够假期，所以没有资格享受长假。于是，他一个人来到了工作台前开始了沉思。他回想了一下以前听到过的女工的牢骚，脑中浮现出了几千个女工在工厂里面汗流浃背焊接晶体管的画面，以及德州仪器为此要付给她们的工资。花费好几千人来做晶体管焊接效率真的是太低了，为什么不在生产晶体管的时候就直接把所有的有源器件和无源器件<strong>做在一块衬底晶片上</strong>呢？</p>
+<p>说干就干。很快，基尔比把这个想法变成了现实（毕竟工程师）。他在锗材料的衬底晶片上成功做出了世界上第一块集成电路，上面集成有晶体管、电阻和电容。他成功地展示了<strong>『集成电路』</strong>的想法，这样的电路从此就被称为『集成电路』。1959 年 2 月，德州仪器的专利代理人提交了一份『微型电子线路』的发明专利申请。</p>
+<p><img src="/uploads/2019/%E9%94%97%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF.jpg" alt="世界上第一块锗集成电路"></p>
+<p>仙童半导体坐不住了。</p>
+<p>1959 年 7 月，仙童半导体也向专利局提出了他们公司的发明专利申请。仙童半导体的罗伯特·诺伊斯（上面八个年轻人中的第一个，也是『八叛徒（traitorous eight）』的领导人）也有了类似的集成电路的想法。得益于母公司是一家照相机公司，他基于硅晶片上的扩散技术和平面照相技术（也就是现代光刻的前身，此项技术德州仪器没有）做出了硅材料的集成电路，很好地解决了<strong>片上金属互连</strong>的问题。因为当时硅材料已经比锗材料便宜了，而且他的发明更实际更方便工业化生产，所以得到了资本家的青睐。基尔比的锗材料集成电路后来进了博物馆。</p>
+<p><img src="/uploads/2019/%E7%A1%85%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF.jpg" alt="罗伯特·诺伊斯的硅集成电路"></p>
+<p>很快，两个巨大的军工项目大大促进了集成电路的发展：阿波罗登月计划（Apollo Project）和『民兵（Minuteman）』导弹计划。这两个东西都要飞，对重量和体积的要求异常严格。集成电路刚刚好满足了体积小，重量轻的要求，在项目中大放异彩。体量巨大的军工项目这一波节奏，带得集成电路迅速普及。</p>
+<p>1966 年，基尔比和诺伊斯同时被富兰克林学会授予巴兰丁奖章，基尔比被誉为<strong>『第一块集成电路的发明家』</strong>，而诺伊斯被誉为<strong>『提出了适合于工业生产的集成电路理论』</strong>的人。1969 年，法院最后的判决下达，也从法律上实际承认了<strong>『集成电路』</strong>是一项同时的发明。基尔比因此获得了 2000 年的诺贝尔物理学奖以表彰他在集成电路领域的贡献。</p>
+<h2 id="四、硅谷"><a href="#四、硅谷" class="headerlink" title="四、硅谷"></a>四、硅谷</h2><p>1965 年，当时还在仙童半导体担任工程师的戈登·摩尔在《电子学杂志》（Electronics Magazine）上发表了文章，预测单位面积集成电路上集成的晶体管每隔 12 个月会翻一番（1975 年改为 24 个月），集成电路性能也会得到相应的提升。这个著名的<strong>『摩尔定律』</strong>一直支配着集成电路制造业进入 21 世纪。一个很有说服力的例子就是，1997 年有人制作了一块边长 8 毫米的芯片，它的功能和速度完败当年占了一大个屋子的第一台通用计算机埃尼阿克。</p>
+<p><img src="/uploads/2019/%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B.png" alt="摩尔定律"></p>
+<p>1966 年，仙童已经是全球第二大半导体公司，仅次于德州仪器。到 1967 年，公司营业额已接近 2 亿美元。</p>
+<p>然而，因为利润分配问题，仙童半导体与母公司产生了矛盾，仙童的一批核心骨干再次出走，其中比较著名的有：</p>
+<ol>
+<li>金·赫尔尼（Jean Hoerni）、杰·拉斯特（Jay Last）与谢尔顿·罗伯茨（Sheldon Roberts）创立 Amelco，就是后来的<strong>泰瑞达</strong>（Teledyne）</li>
+<li>尤金·克莱纳（Eugene Kleiner）陆续创立 Edex、<strong>英特矽尔</strong>（Intersil） 等；</li>
+<li>罗伯特·诺伊斯（Robert Noyce）与戈登·摩尔（Gordon Moore）创立<strong>英特尔</strong>（Integrated Electronics, Intel）；</li>
+<li>杰里·桑德斯（Jerry Sanders），带着 7 位仙童员工创办<strong>超微半导体公司</strong>（Advanced Micro Devices, AMD）。</li>
+</ol>
+<p>就这样，围绕仙童周边，半导体公司以及更多的科技公司如雨后春笋般诞生。这些新企业把科技和创新的火种撒向圣塔克拉拉以及整个旧金山湾区，在这里燃起了燎原之火。1969 年，在这里召开了一次半导体工程师大会，400 位与会者中，只有 24 人未曾在仙童公司工作过。1971 年，美国《每周商业》报纸电子新闻的记者 Don Hoefler 在系列文章的标题上第一次使用了<strong>『硅谷』</strong>这个名称，因为当时当地的企业多数都是从事与硅材料半导体和计算机相关的产业。</p>
+<p><img src="/uploads/2019/%E7%A1%85%E8%B0%B7%E7%A7%91%E6%8A%80%E5%85%AC%E5%8F%B8.jpg" alt="与仙童半导体有关的硅谷高科技公司"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/uploads/wechatpay.jpg" alt="陈小峰 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/uploads/alipay.jpg" alt="陈小峰 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag"># 随笔</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/07/%E5%9E%83%E5%9C%BE%E5%9B%B4%E5%9F%8E%EF%BC%8C%E5%85%A8%E7%90%83%E5%8F%98%E6%9A%96%E5%92%8C%E8%BA%B2%E4%B8%8D%E5%BC%80%E7%9A%84%E7%83%AD%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E5%AE%9A%E5%BE%8B/" rel="prev" title="垃圾围城，全球变暖和躲不开的热力学第二定律">
+                  <i class="fa fa-chevron-left"></i> 垃圾围城，全球变暖和躲不开的热力学第二定律
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/09/sitelog1/" rel="next" title="Hexo + NexT 建站日志（一）">
+                  Hexo + NexT 建站日志（一） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈小峰</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
